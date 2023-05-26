@@ -27,3 +27,7 @@ $ python manage.py migrate
 ```bash
 $ python manage.py runserver
 ```
+- Start Django Admin panel but first create superuser and use http://127.0.0.1:8000/admin
+```bash
+$ python manage.py createsuperuse --username admin
+```
