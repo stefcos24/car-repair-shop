@@ -23,7 +23,7 @@ $ pip install -r requirements.txt
 ```bash
 $ python manage.py migrate
 ```
-- Start Django project and use http://127.0.0.1:8000/
+- Start Django project from src folder and use http://127.0.0.1:8000/
 ```bash
 $ python manage.py runserver
 ```
