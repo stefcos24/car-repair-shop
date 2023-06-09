@@ -20,5 +20,5 @@ from domain.views import base, person
 
 urlpatterns = [
     path('', base.hello_world, name="domain"),
-    path('persons/', person.get_all_persons, name="persons")
+    path('persons/', person.get_persons, name="persons")
 ]
