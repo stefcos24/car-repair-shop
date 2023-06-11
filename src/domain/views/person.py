@@ -7,6 +7,6 @@ from ..models.person import Person
 def get_all_persons(request):
     persons = Person.objects.all()
     context = {
-        "persons": persons
+        "persons1234": persons
     }
     return render(request, 'domain/persons.html', context)
