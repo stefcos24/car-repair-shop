@@ -37,6 +37,3 @@ def create_person(request):
         person.save()
         return redirect('persons')
     return render(request, 'domain/persons.html')
-=======
-    return render(request, 'domain/persons.html', context)
->>>>>>> release/2023.1
