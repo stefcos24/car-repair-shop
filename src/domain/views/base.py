@@ -4,5 +4,4 @@ from django.shortcuts import render
 
 
 def hello_world(request):
-    context = {}
-    return render(request, 'domain/home.html', context)
+    return render(request, 'domain/index.html')
