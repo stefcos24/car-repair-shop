@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.urls import path
 
-from domain.views import base, person
+from domain.views import base, person, customer
 
 urlpatterns = [
     path('', base.hello_world, name="domain"),
-    path('persons/', person.get_all_persons, name="persons")
+    path('persons/', person.get_all_persons, name="persons"),
+    path('customers/', customer.get_all_customers, name="customers")
 ]
