@@ -12,6 +12,7 @@
 
 # Maven
 target/
+pages/
 
 # JetBrains IDE
 .idea/

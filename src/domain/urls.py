@@ -19,7 +19,7 @@ from django.urls import path
 from domain.views import base, person, customer
 
 urlpatterns = [
-    path('', base.hello_world, name="domain"),
+    path('', base.domain_base, name="domain"),
     path('person/', person.person_list, name="persons"),
     path('person/<str:person_id>', person.person_details, name="person"),
     path('customers/', customer.get_all_customers, name="customers")
