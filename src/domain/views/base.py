@@ -3,5 +3,5 @@ from django.shortcuts import render
 # Create your views here.
 
 
-def hello_world(request):
+def domain_base(request):
     return render(request, 'domain/index.html')
