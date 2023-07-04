@@ -22,5 +22,6 @@ urlpatterns = [
     path('', base.domain_base, name="domain"),
     path('person/', person.person_list, name="persons"),
     path('person/<str:person_id>', person.person_details, name="person"),
-    path('customers/', customer.get_all_customers, name="customers")
+    path('customer/', customer.customer_list, name="customers"),
+    path('customer/<str:customer_id>', customer.customer_details, name="customer"),
 ]
