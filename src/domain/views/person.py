@@ -1,8 +1,8 @@
 import uuid
 
 from django.shortcuts import render, redirect
-from ..models.person import Person
-from ..forms.person import PersonForm
+from domain.models.person import Person
+from domain.forms.person import PersonForm
 
 
 def person_list(request):

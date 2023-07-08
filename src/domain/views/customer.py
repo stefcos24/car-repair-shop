@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from ..models.customer import Customer
+from domain.models.customer import Customer
 
 # Create your views here.
 
