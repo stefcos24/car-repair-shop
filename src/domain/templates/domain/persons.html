@@ -16,6 +16,11 @@
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{% url 'domain' %}">Home</a></li>
               <li class="breadcrumb-item active">Persons</li>
+                <li class="breadcrumb-item">
+                    <a href="{% url 'person_create' %}" class="btn btn-sm btn-primary">
+                      <i class="fas fa-user-plus"></i> Create Person
+                    </a>
+                </li>
             </ol>
           </div>
         </div>
@@ -58,7 +63,7 @@
                 </div>
                 <div class="card-footer">
                   <div class="text-right">
-                    <a href="#" class="btn btn-sm bg-red">
+                    <a href="{% url 'person_delete' person.id %}" class="btn btn-sm bg-red">
                       <i class="fas fa-trash"></i>
                     </a>
                     <a href="{% url 'person' person.id %}" class="btn btn-sm btn-primary">
