@@ -1,13 +1,31 @@
 from django.contrib import admin
-from .models.person import *
-from .models.customer import *
-from .models.payments_details import *
-from .models.payments import *
-from .models.payments_items import *
+from domain.models.person import Person
+from domain.models.customer import Customer
+from domain.models.payments_details import PaymentsDetail
+from domain.models.payments import Payment
+from domain.models.payments_items import PaymentsItem
 
-# Register your models here.
-admin.site.register(Person)
-admin.site.register(Customer)
-admin.site.register(Payments_details)
-admin.site.register(Payments)
-admin.site.register(Payments_items)
+
+@admin.register(Person)
+class PersonAdmin(admin.ModelAdmin):
+    list_display = ["id", "first_name", "last_name", "email", "active"]
+
+
+@admin.register(Customer)
+class CustomerAdmin(admin.ModelAdmin):
+    list_display = ["id", "full_name", "address1", "email", "phone_number", "active"]
+
+
+@admin.register(Payment)
+class PaymentsAdmin(admin.ModelAdmin):
+    list_display = ["id", "bill_id", "date_of_issue", "value_date", "payment_method"]
+
+
+@admin.register(PaymentsDetail)
+class PaymentsDetailsAdmin(admin.ModelAdmin):
+    list_display = ["id", "total_amount"]
+
+
+@admin.register(PaymentsItem)
+class PaymentsItemsAdmin(admin.ModelAdmin):
+    list_display = ["id", "payment"]

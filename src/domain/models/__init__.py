@@ -1,4 +1,4 @@
 from .person import Person
-from .payments_details import Payments_details
-from .payments import Payments
-from .payments_items import Payments_items
+from domain.models.payments_details import PaymentsDetail
+from domain.models.payments import Payment
+from domain.models.payments_items import PaymentsItem
