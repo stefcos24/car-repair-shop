@@ -9,11 +9,13 @@ from domain.models.payments_items import PaymentsItem
 @admin.register(Person)
 class PersonAdmin(admin.ModelAdmin):
     list_display = ["id", "first_name", "last_name", "email", "active"]
+    readonly_fields = ["created", "modified"]
 
 
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ["id", "full_name", "address1", "email", "phone_number", "active"]
+    readonly_fields = ["created", "modified"]
 
 
 @admin.register(Payment)
@@ -24,8 +26,10 @@ class PaymentsAdmin(admin.ModelAdmin):
 @admin.register(PaymentsDetail)
 class PaymentsDetailsAdmin(admin.ModelAdmin):
     list_display = ["id", "total_amount"]
+    readonly_fields = ["created", "modified"]
 
 
 @admin.register(PaymentsItem)
 class PaymentsItemsAdmin(admin.ModelAdmin):
     list_display = ["id", "payment"]
+    readonly_fields = ["created", "modified"]
