@@ -1,3 +1,4 @@
+import datetime
 import uuid
 
 from django.shortcuts import render, redirect
@@ -14,12 +15,27 @@ def person_list(request):
 
 
 def create_person(request):
-    form = PersonForm()
+    form = PersonForm(request.POST)
     if request.method == "POST":
-        form = PersonForm(request.POST)
         if form.is_valid():
-            person = form.save(commit=False)
-            person.id = uuid.uuid4()
+            first_name = form.cleaned_data["first_name"]
+            last_name = form.cleaned_data["last_name"]
+            email = form.cleaned_data["email"]
+            phone_number = form.cleaned_data["phone_number"]
+            active = form.cleaned_data["active"]
+            created = datetime.datetime.now()
+            modified = datetime.datetime.now()
+
+            person = Person(
+                id=uuid.uuid4(),
+                first_name=first_name,
+                last_name=last_name,
+                email=email,
+                phone_number=phone_number,
+                active=active,
+                created=created,
+                modified=modified
+            )
             person.save()
             return redirect('persons')
 
