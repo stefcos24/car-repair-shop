@@ -21,8 +21,8 @@ from domain.views import base, person, customer
 urlpatterns = [
     path('', base.domain_base, name="domain"),
     path('person/', person.person_list, name="persons"),
-    path('person/<str:person_id>', person.get_or_update_person_details, name="person"),
     path('person/create', person.create_person, name="person_create"),
+    path('person/<str:person_id>', person.get_or_update_person_details, name="person"),
     path('person/<str:person_id>/delete', person.delete_person, name="person_delete"),
     path('customer/', customer.customer_list, name="customers"),
     path('customer/<str:customer_id>', customer.customer_details, name="customer"),
