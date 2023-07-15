@@ -83,6 +83,7 @@ def get_or_update_customer_details(request, customer_id: uuid.UUID):
     }
     return render(request, 'domain/customer.html', context)
 
+
 def delete_customer(request, customer_id: uuid.UUID):
 
     customer = Customer.objects.filter(id=customer_id).first()
