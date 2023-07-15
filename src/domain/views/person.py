@@ -45,7 +45,7 @@ def create_person(request):
     return render(request, 'domain/person_create.html', context)
 
 
-def get_or_update_person_details(request, person_id):
+def get_or_update_person_details(request, person_id: uuid.UUID):
 
     person = Person.objects.filter(id=person_id).first()
 
@@ -54,8 +54,9 @@ def get_or_update_person_details(request, person_id):
     if request.method == "POST":
         form = PersonForm(request.POST, instance=person)
         if form.is_valid():
+            form.instance.modified = datetime.datetime.now()
             form.save()
-            return redirect('person', person_id=person.id)
+            return redirect('persons')
 
     context = {
         "form": form,
@@ -64,7 +65,7 @@ def get_or_update_person_details(request, person_id):
     return render(request, 'domain/person.html', context)
 
 
-def delete_person(request, person_id):
+def delete_person(request, person_id: uuid.UUID):
 
     person = Person.objects.filter(id=person_id).first()
 
