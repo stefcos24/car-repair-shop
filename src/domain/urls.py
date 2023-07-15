@@ -25,5 +25,7 @@ urlpatterns = [
     path('person/<str:person_id>', person.get_or_update_person_details, name="person"),
     path('person/<str:person_id>/delete', person.delete_person, name="person_delete"),
     path('customer/', customer.customer_list, name="customers"),
-    path('customer/<str:customer_id>', customer.customer_details, name="customer"),
+    path('customer/create', customer.create_customer, name="customer_create"),
+    path('customer/<str:customer_id>', customer.get_or_update_customer_details, name="customer"),
+    path('customer/<str:customer_id>/delete', customer.delete_customer, name="customer_delete"),
 ]

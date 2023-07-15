@@ -17,7 +17,7 @@
               <li class="breadcrumb-item"><a href="{% url 'domain' %}">Home</a></li>
               <li class="breadcrumb-item active">Customers</li>
                 <li class="breadcrumb-item">
-                    <a href="{% url 'person_create' %}" class="btn btn-sm btn-primary">
+                    <a href="{% url 'customer_create' %}" class="btn btn-sm btn-primary">
                       <i class="fas fa-user-plus"></i> Create Customer
                     </a>
                 </li>
@@ -45,7 +45,7 @@
           <table class="table table-striped projects">
               <thead>
                   <tr>
-                      <th style="width: 1%">
+                      <th style="width: 4%">
                           #
                       </th>
                       <th>
@@ -74,7 +74,7 @@
               {% for customer in customers %}
                   <tr>
                       <td>
-                          #
+                          {{ forloop.counter }}
                       </td>
                       <td>
                           <a>
@@ -108,18 +108,13 @@
                               <span class="badge badge-danger">Inactive</span>
                           {% endif %}
                       </td>
-                      <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="#">
+                      <td class="project-primary text-right">
+                          <a class="btn btn-primary btn-sm" href="{% url 'customer' customer.id %}">
                               <i class="fas fa-folder">
                               </i>
-                              View
+                              View Customer
                           </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
+                          <a class="btn btn-danger btn-sm" href="{% url 'customer_delete' customer.id %}">
                               <i class="fas fa-trash">
                               </i>
                               Delete
