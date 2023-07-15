@@ -1,6 +1,7 @@
 import datetime
 import uuid
 
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from domain.forms.customer import CustomerForm
@@ -15,14 +16,6 @@ def customer_list(request):
         "customers": customers
     }
     return render(request, 'domain/customers.html', context)
-
-
-def customer_details(request, customer_id: uuid.UUID):
-    customer = Customer.objects.filter(id=customer_id).first()
-    context = {
-        "customer": customer
-    }
-    return render(request, 'domain/customer.html', context)
 
 
 def create_customer(request):
@@ -63,4 +56,42 @@ def create_customer(request):
             )
             customer.save()
             return redirect('customers')
-    return render(request, 'domain.customers.html')
+
+    context = {
+        "form": form
+    }
+
+    return render(request, 'domain/customer_create.html', context)
+
+
+def get_or_update_customer_details(request, customer_id: uuid.UUID):
+
+    customer = Customer.objects.filter(id=customer_id).first()
+
+    form = CustomerForm(instance=customer)
+
+    if request.method == "POST":
+        form = CustomerForm(request.POST, instance=customer)
+        if form.is_valid():
+            form.instance.modified = datetime.datetime.now()
+            form.save()
+            return redirect('customers')
+
+    context = {
+        "form": form,
+        "customer": customer
+    }
+    return render(request, 'domain/customer.html', context)
+
+def delete_customer(request, customer_id: uuid.UUID):
+
+    customer = Customer.objects.filter(id=customer_id).first()
+
+    if request.method == "POST":
+        customer.delete()
+        return redirect('customers')
+
+    context = {
+        "customer": customer
+    }
+    return render(request, 'domain/customer_delete.html', context)
