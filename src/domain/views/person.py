@@ -1,6 +1,7 @@
 import datetime
 import uuid
 
+from django.http import Http404
 from django.shortcuts import render, redirect
 from domain.models.person import Person
 from domain.forms.person import PersonForm
@@ -48,6 +49,8 @@ def create_person(request):
 def get_or_update_person_details(request, person_id: uuid.UUID):
 
     person = Person.objects.filter(id=person_id).first()
+    if not person:
+        raise Http404()
 
     form = PersonForm(instance=person)
 
@@ -68,6 +71,8 @@ def get_or_update_person_details(request, person_id: uuid.UUID):
 def delete_person(request, person_id: uuid.UUID):
 
     person = Person.objects.filter(id=person_id).first()
+    if not person:
+        raise Http404()
 
     if request.method == "POST":
         person.delete()

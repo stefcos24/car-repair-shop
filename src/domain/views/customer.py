@@ -1,7 +1,7 @@
 import datetime
 import uuid
 
-from django.http import HttpResponse
+from django.http import Http404
 from django.shortcuts import render, redirect
 
 from domain.forms.customer import CustomerForm
@@ -67,6 +67,8 @@ def create_customer(request):
 def get_or_update_customer_details(request, customer_id: uuid.UUID):
 
     customer = Customer.objects.filter(id=customer_id).first()
+    if not customer:
+        raise Http404()
 
     form = CustomerForm(instance=customer)
 
@@ -87,6 +89,8 @@ def get_or_update_customer_details(request, customer_id: uuid.UUID):
 def delete_customer(request, customer_id: uuid.UUID):
 
     customer = Customer.objects.filter(id=customer_id).first()
+    if not customer:
+        raise Http404()
 
     if request.method == "POST":
         customer.delete()
