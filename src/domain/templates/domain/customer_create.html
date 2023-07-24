@@ -51,8 +51,8 @@
                 <label for="inputStatus">Status</label>
                 <select id="inputStatus" class="form-control custom-select" name="active">
                     <option disabled>Select one</option>
-                    <option value="Active" {% if customer.active is True %}selected{% endif %}>Active</option>
-                    <option value="Inactive" {% if customer.active is False %}selected{% endif %}>Inactive</option>
+                    <option value="True" {% if customer.active is True %}selected{% endif %}>Active</option>
+                    <option value="False" {% if customer.active is False %}selected{% endif %}>Inactive</option>
                 </select>
               </div>
               <div class="form-group">
