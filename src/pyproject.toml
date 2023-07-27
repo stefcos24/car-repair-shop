@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "car-repair-shop"
+version = "0.1.0"
+description = ""
+authors = ["stefancosicpdc <stefan.cosic@pythondevcenter.com>"]
+packages = [
+    { include = "domain" },
+    { include = "src" },
+    { include = "manage.py" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+asgiref = "3.7.1"
+django = "4.2.1"
+sqlparse = "0.4.4"
+typing-extensions = "4.6.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
