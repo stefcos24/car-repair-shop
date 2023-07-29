@@ -36,3 +36,10 @@ $ python manage.py migrate
 ```bash
 $ python manage.py runserver
 ```
+
+## Instruction to run Ruff
+
+- Before committing to git run linter, if there is errors resolve it
+```bash
+$ ruff check .
+```
