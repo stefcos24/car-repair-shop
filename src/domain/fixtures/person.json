@@ -1,0 +1,145 @@
+[
+    {
+        "model": "domain.Person",
+        "pk": "437c6eec-6558-4845-b17b-b3b0aa64cce5",
+        "fields": {
+            "first_name": "Marko",
+            "last_name": "Markovic",
+            "email": "markom@gmail.com",
+            "phone_number": "111111",
+            "active": "True",
+            "created": "2023-07-30 17:35:01.942027",
+            "modified": "2023-07-30 17:35:01.942027"
+        }
+    },
+    {
+        "model": "domain.Person",
+        "pk": "b8005a23-d368-4536-9ee3-358c48863bd7",
+        "fields": {
+            "first_name": "Nikola",
+            "last_name": "Nikolic",
+            "email": "nikolan@gmail.com",
+            "phone_number": "0666664",
+            "active": "True",
+            "created": "2023-07-30 16:35:01.942027",
+            "modified": "2023-07-30 17:35:01.942027"
+        }
+    },
+    {
+        "model": "domain.Person",
+        "pk": "0dcda31f-c830-495f-b22c-cde1686f89d4",
+        "fields": {
+            "first_name": "Milan",
+            "last_name": "Markovic",
+            "email": "milanm@gmail.com",
+            "phone_number": "06444444",
+            "active": "False",
+            "created": "2023-06-30 10:35:01.942027",
+            "modified": "2023-07-20 15:35:01.942027"
+        }
+    },
+    {
+        "model": "domain.Person",
+        "pk": "b1039258-e1d8-4e76-8d0c-e1c274904049",
+        "fields": {
+            "first_name": "Milos",
+            "last_name": "Tesla",
+            "email": "teslam@gmail.com",
+            "phone_number": "06556565",
+            "active": "True",
+            "created": "2023-07-30 17:35:01.942027",
+            "modified": "2023-07-30 17:35:01.942027"
+        }
+    },
+    {
+        "model": "domain.Person",
+        "pk": "8fe4f7c4-93ef-4af2-acf0-266a07e6a616",
+        "fields": {
+            "first_name": "Nenad",
+            "last_name": "Pejakovic",
+            "email": "nenadpej@gmail.com",
+            "phone_number": "065434343",
+            "active": "True",
+            "created": "2023-07-30 17:35:01.942027",
+            "modified": "2023-07-30 17:35:01.942027"
+        }
+    },
+    {
+        "model": "domain.Person",
+        "pk": "2e2b97c4-7ede-46c5-94ee-e85d288cf90e",
+        "fields": {
+            "first_name": "Marija",
+            "last_name": "Nikolic",
+            "email": "nikolicm@gmail.com",
+            "phone_number": "06060606",
+            "active": "False",
+            "created": "2023-01-30 17:35:01.942027",
+            "modified": "2023-01-30 20:35:01.942027"
+        }
+    },
+    {
+        "model": "domain.Person",
+        "pk": "cacfbac2-e6fc-490e-b6ae-3aa66fee5201",
+        "fields": {
+            "first_name": "Jovana",
+            "last_name": "Jovic",
+            "email": "jovjov@gmail.com",
+            "phone_number": "066122121",
+            "active": "True",
+            "created": "2023-07-30 17:35:01.942027",
+            "modified": "2023-07-30 17:35:01.942027"
+        }
+    },
+    {
+        "model": "domain.Person",
+        "pk": "437c6eec-6558-4845-b17b-b3b0aa64cce5",
+        "fields": {
+            "first_name": "Marko",
+            "last_name": "Subotic",
+            "email": "markos@gmail.com",
+            "phone_number": "111111",
+            "active": "False",
+            "created": "2023-03-30 11:35:01.942027",
+            "modified": "2023-03-30 13:35:01.942027"
+        }
+    },
+    {
+        "model": "domain.Person",
+        "pk": "b4856f2e-92a9-485c-8756-2cf451ff06a3",
+        "fields": {
+            "first_name": "Milica",
+            "last_name": "Markovic",
+            "email": "milicam@gmail.com",
+            "phone_number": "0667474747",
+            "active": "True",
+            "created": "2023-07-30 17:35:01.942027",
+            "modified": "2023-07-30 17:35:01.942027"
+        }
+    },
+    {
+        "model": "domain.Person",
+        "pk": "1216f042-f19c-4a4c-9115-6bf7fc61b72a",
+        "fields": {
+            "first_name": "Nemanja",
+            "last_name": "Topic",
+            "email": "nemtopic@gmail.com",
+            "phone_number": "06597979",
+            "active": "True",
+            "created": "2023-07-30 17:35:01.942027",
+            "modified": "2023-07-30 17:35:01.942027"
+        }
+    },
+    {
+        "model": "domain.Person",
+        "pk": "f6ee49ab-e662-4fd2-adf2-1a60efae1868",
+        "fields": {
+            "first_name": "Nevena",
+            "last_name": "Topic",
+            "email": "nevenatopic@gmail.com",
+            "phone_number": "06555579",
+            "active": "True",
+            "created": "2023-07-30 17:35:01.942027",
+            "modified": "2023-07-30 17:35:01.942027"
+        }
+    }
+]
