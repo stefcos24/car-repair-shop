@@ -8,4 +8,5 @@ class PaymentsDetail(models.Model):
     modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Payment detail: {PaymentsDetail.id} - {PaymentsDetail.total_amount}"
+        return (f"Payment detail: {PaymentsDetail.id} - "+
+                "{PaymentsDetail.total_amount}")

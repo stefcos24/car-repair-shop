@@ -10,16 +10,20 @@ class PersonForm(ModelForm):
 
         widgets = {
             "first_name": forms.TextInput(
-                attrs={"class": "form-control", "id": "inputFirstName", "placeholder": "First Name"}
+                attrs={"class": "form-control", "id": "inputFirstName",
+                       "placeholder": "First Name"}
             ),
             "last_name": forms.TextInput(
-                attrs={"class": "form-control", "id": "inputLastName", "placeholder": "Last Name"}
+                attrs={"class": "form-control", "id": "inputLastName",
+                       "placeholder": "Last Name"}
             ),
             "email": forms.EmailInput(
-                attrs={"class": "form-control", "id": "inputEmail", "placeholder": "Email"}
+                attrs={"class": "form-control", "id": "inputEmail",
+                       "placeholder": "Email"}
             ),
             "phone_number": forms.TextInput(
-                attrs={"class": "form-control", "id": "inputPhoneNumber", "placeholder": "Phone Number"}
+                attrs={"class": "form-control", "id": "inputPhoneNumber",
+                       "placeholder": "Phone Number"}
             ),
             "active": forms.CheckboxInput(attrs={"name": "is active"}),
         }
