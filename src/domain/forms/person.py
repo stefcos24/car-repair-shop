@@ -4,9 +4,11 @@ from domain.models.person import Person
 
 
 class PersonForm(ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput(attrs={"class": "form-control", "id": "inputPassword", "placeholder": "Password"}))
+
     class Meta:
         model = Person
-        fields = ['first_name', 'last_name', 'email', 'phone_number', 'active']
+        fields = ['first_name', 'last_name', 'email', 'phone_number', 'active', 'password']
 
         widgets = {
             "first_name": forms.TextInput(
@@ -21,5 +23,5 @@ class PersonForm(ModelForm):
             "phone_number": forms.TextInput(
                 attrs={"class": "form-control", "id": "inputPhoneNumber", "placeholder": "Phone Number"}
             ),
-            "active": forms.CheckboxInput(attrs={"name": "is active"}),
+            "active": forms.CheckboxInput(attrs={"name": "is active"})
         }

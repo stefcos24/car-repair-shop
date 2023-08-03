@@ -1,6 +1,7 @@
 import datetime
 import uuid
 
+from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render, redirect
 
@@ -10,6 +11,7 @@ from domain.models.customer import Customer
 # Create your views here.
 
 
+@login_required(login_url='user_login')
 def customer_list(request):
     customers = Customer.objects.all()
     context = {
@@ -18,6 +20,7 @@ def customer_list(request):
     return render(request, 'domain/customers.html', context)
 
 
+@login_required(login_url='user_login')
 def create_customer(request):
 
     form = CustomerForm(request.POST)
@@ -64,6 +67,7 @@ def create_customer(request):
     return render(request, 'domain/customer_create.html', context)
 
 
+@login_required(login_url='user_login')
 def get_or_update_customer_details(request, customer_id: uuid.UUID):
 
     customer = Customer.objects.filter(id=customer_id).first()
@@ -86,6 +90,7 @@ def get_or_update_customer_details(request, customer_id: uuid.UUID):
     return render(request, 'domain/customer.html', context)
 
 
+@login_required(login_url='user_login')
 def delete_customer(request, customer_id: uuid.UUID):
 
     customer = Customer.objects.filter(id=customer_id).first()
