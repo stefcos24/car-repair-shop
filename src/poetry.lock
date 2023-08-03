@@ -40,6 +40,18 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "python-decouple"
+version = "3.8"
+description = "Strict separation of settings from code."
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "python-decouple-3.8.tar.gz", hash = "sha256:ba6e2657d4f376ecc46f77a3a615e058d93ba5e465c01bbe57289bfb7cce680f"},
+    {file = "python_decouple-3.8-py3-none-any.whl", hash = "sha256:d0d45340815b25f4de59c974b855bb38d03151d81b037d9e3f463b0c9f8cbd66"},
+]
+
+[[package]]
 name = "ruff"
 version = "0.0.280"
 description = "An extremely fast Python linter, written in Rust."
@@ -110,4 +122,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "39dc13d735b2a9f50e9a85f0d01588e2a76d412c8795f02843360b03a813bd92"
+content-hash = "7a0bfe56614db6bc652b68b79c4c54854ed20933e1bb7edc148190a36f7fae6d"

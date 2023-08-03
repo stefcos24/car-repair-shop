@@ -40,14 +40,15 @@ Thumbs.db
 *.wmv
 *.sqlite3
 
+# Environments
 .env
-.nox
+env/
+.venv
+venv/
 .pytest_cache
 .pytest_report
 .mypy_cache
 .mypy_report
-.coverage
-.coverage_report
 .hypothesis
 .static
 
@@ -56,4 +57,3 @@ Thumbs.db
 *.iws
 *.iml
 *.ipr
-venv/

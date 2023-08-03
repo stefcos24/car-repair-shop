@@ -1,12 +1,17 @@
 import datetime
 import uuid
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User, Group
 from django.http import Http404
 from django.shortcuts import render, redirect
+
+from domain.decorators import allowed_users
 from domain.models.person import Person
 from domain.forms.person import PersonForm
 
 
+@login_required(login_url='user_login')
 def person_list(request):
     persons = Person.objects.all()
     context = {
@@ -15,6 +20,8 @@ def person_list(request):
     return render(request, 'domain/persons.html', context)
 
 
+@login_required(login_url='user_login')
+@allowed_users(allowed_roles=['admin'])
 def create_person(request):
     form = PersonForm(request.POST)
     if request.method == "POST":
@@ -37,6 +44,14 @@ def create_person(request):
                 created=created,
                 modified=modified
             )
+            user = User.objects.create_user(
+                username=f"{person.first_name}{person.last_name}",
+                email=person.email,
+                password=form.cleaned_data["password"]
+            )
+            group = Group.objects.get(name="staff")
+            user.groups.add(group)
+            person.user = user
             person.save()
             return redirect('persons')
 
@@ -46,6 +61,7 @@ def create_person(request):
     return render(request, 'domain/person_create.html', context)
 
 
+@login_required(login_url='user_login')
 def get_or_update_person_details(request, person_id: uuid.UUID):
 
     person = Person.objects.filter(id=person_id).first()
@@ -68,6 +84,8 @@ def get_or_update_person_details(request, person_id: uuid.UUID):
     return render(request, 'domain/person.html', context)
 
 
+@login_required(login_url='user_login')
+@allowed_users(allowed_roles=['admin'])
 def delete_person(request, person_id: uuid.UUID):
 
     person = Person.objects.filter(id=person_id).first()
@@ -75,7 +93,10 @@ def delete_person(request, person_id: uuid.UUID):
         raise Http404()
 
     if request.method == "POST":
+        user = person.user
         person.delete()
+        if user:
+            user.delete()
         return redirect('persons')
 
     context = {
