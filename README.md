@@ -68,12 +68,18 @@ SECRET_KEY="XlNyEphe5mxDTVyrnIurOZvYsLemBtHnTD3mYQuUAj2PyqMM-unog-20fhZn89TP"
 # Password for first superuser with admin permissions.
 SUPERUSER_PASSWORD="AppAdmin2023!"
 
+# Password for first test user with staff permissions.
+TESTUSER_PASSWORD="TestUser2023!"
+
 # Language code for the default language that should be used in fallback situations.
 # Examples: en, de, sl, ...
 LANGUAGE_CODE=en-us
 
 # Time zone provided
 TIME_ZONE="UTC"
+
+# Time zone off
+USE_TZ=False
 
 # Defines the static URL prefix for any assets references from
 # the site serving static content.

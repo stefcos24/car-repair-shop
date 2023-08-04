@@ -10,36 +10,66 @@ from decouple import config
 from domain.models import Person
 
 
-def create_super_user(apps, schema_editor):
-
-    # creating two group for permissions
-    admin_group, _ = Group.objects.get_or_create(name='admin')
-    staff_group, _ = Group.objects.get_or_create(name='staff')
-
-    # check if user not exists and create superuser with admin permissions
-    if not User.objects.filter(username='AppAdmin').exists():
+def create_users(
+        first_name: str,
+        last_name: str,
+        email: str,
+        phone_number: str,
+        username: str,
+        password: str,
+        is_superuser: bool,
+        group
+):
+    if not User.objects.filter(username=username).exists():
         person = Person(
                 id=uuid.uuid4(),
-                first_name="App",
-                last_name="Admin",
-                email="appadmin@admin.com",
-                phone_number="066111222",
+                first_name=first_name,
+                last_name=last_name,
+                email=email,
+                phone_number=phone_number,
                 active=True,
                 created=datetime.datetime.now(),
                 modified=datetime.datetime.now()
             )
         superuser = User.objects.create(
             username=f"{person.first_name}{person.last_name}",
-            password=make_password(config('SUPERUSER_PASSWORD')),
+            password=password,
             email=person.email,
-            is_superuser=True,
-            is_staff=True,
+            is_superuser=is_superuser,
+            is_staff=is_superuser,
             is_active=True
         )
         # add superuser to admin group
-        superuser.groups.add(admin_group)
+        superuser.groups.add(group)
         person.user = superuser
         person.save()
+
+def create_super_user(apps, schema_editor):
+
+    # creating two group for permissions
+    admin_group, _ = Group.objects.get_or_create(name='admin')
+    staff_group, _ = Group.objects.get_or_create(name='staff')
+
+    create_users(
+        first_name="App",
+        last_name="Admin",
+        email="appadmin@admin.com",
+        phone_number="066111222",
+        username="AppAdmin",
+        password=make_password(config('SUPERUSER_PASSWORD')),
+        is_superuser=True,
+        group=admin_group
+    )
+    create_users(
+        first_name="Test",
+        last_name="User",
+        email="test_user@staff.com",
+        phone_number="066111222",
+        username="TestUser",
+        password=make_password(config('TESTUSER_PASSWORD')),
+        is_superuser=False,
+        group=staff_group
+    )
 
 
 class Migration(migrations.Migration):
