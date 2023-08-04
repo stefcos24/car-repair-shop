@@ -1,0 +1,211 @@
+[
+    {
+        "model": "domain.Customer",
+        "pk": "8df03853-c308-4d09-810c-5828774d9800",
+        "fields": {
+            "full_name": "BMW Tomic",
+            "first_name": "BMW",
+            "last_name": "Tomic",
+            "address1": "Trive Amelice 1b",
+            "address2": "Trive Amelice 2b",
+            "city": "Banjaluka",
+            "phone_number": "065222222",
+            "email": "bmw@gmail.com",
+            "jib":"3",
+            "pib":"4",
+            "created": "2023-07-30 18:35:01.942027",
+            "modified": "2023-07-30 18:50:01.942027",
+            "active": "True"
+        }
+    },
+    {
+        "model": "domain.Customer",
+        "pk": "dd1d65ec-c7ca-4153-be3d-0448172447bf",
+        "fields": {
+            "full_name": "Audi Centar",
+            "first_name": "Audi",
+            "last_name": "Centar",
+            "address1": "Bulevar 1",
+            "address2": "Bulevar 2",
+            "city": "Banjaluka",
+            "phone_number": "065111111",
+            "email": "audi@gmail.com",
+            "jib":"5",
+            "pib":"6",
+            "created": "2023-07-30 18:55:01.942027",
+            "modified": "2023-07-30 19:00:01.942027",
+            "active": "True"
+        }
+    },
+    {
+        "model": "domain.Customer",
+        "pk": "481a0f51-d8f6-42bb-88c9-fe424620f321",
+        "fields": {
+            "full_name": "C-Auto",
+            "first_name": "C",
+            "last_name": "Auto",
+            "address1": "Suboticka 2d",
+            "address2": "Suboticka 2b",
+            "city": "Banjaluka",
+            "phone_number": "065222333",
+            "email": "cauto@gmail.com",
+            "jib":"7",
+            "pib":"8",
+            "created": "2023-07-30 18:35:01.942027",
+            "modified": "2023-07-30 18:50:01.942027",
+            "active": "False"
+        }
+    },
+    {
+        "model": "domain.Customer",
+        "pk": "30fc61d0-d6ff-4ff3-89a5-688938119d26",
+        "fields": {
+            "full_name": "Dacia Auto",
+            "first_name": "Dacia",
+            "last_name": "Auto",
+            "address1": "Trive 10",
+            "address2": "Trive 2",
+            "city": "Banjaluka",
+            "phone_number": "06511112",
+            "email": "dacia@gmail.com",
+            "jib":"9",
+            "pib":"10",
+            "created": "2023-07-29 18:35:01.942027",
+            "modified": "2023-07-30 20:50:01.942027",
+            "active": "False"
+        }
+    },
+    {
+        "model": "domain.Customer",
+        "pk": "1af80e45-0439-4cda-b905-81eb9c303afe",
+        "fields": {
+            "full_name": "Ferrari Auto",
+            "first_name": "Ferrari",
+            "last_name": "Auto",
+            "address1": "Amelice 1b",
+            "address2": "Amelice 2b",
+            "city": "Sarajevo",
+            "phone_number": "066222222",
+            "email": "ferrari@gmail.com",
+            "jib":"13",
+            "pib":"14",
+            "created": "2023-07-30 18:35:01.942027",
+            "modified": "2023-07-30 18:50:01.942027",
+            "active": "True"
+        }
+    }
+    ,{
+        "model": "domain.Customer",
+        "pk": "f984f05b-d1ca-41d7-b5d5-0ec7f2a9504b",
+        "fields": {
+            "full_name": "Lamborghini Auto",
+            "first_name": "Lamborghini",
+            "last_name": "Auto",
+            "address1": "Trive Amelice 11",
+            "address2": "Trive Amelice 21",
+            "city": "Banjaluka",
+            "phone_number": "06333222",
+            "email": "lambo@gmail.com",
+            "jib":"23",
+            "pib":"24",
+            "created": "2023-07-20 18:35:01.942027",
+            "modified": "2023-07-29 15:50:01.942027",
+            "active": "True"
+        }
+    },
+    {
+        "model": "domain.Customer",
+        "pk": "5b8c4f2e-ec33-4a40-a2df-62fe26c6175b",
+        "fields": {
+            "full_name": "Mercedes Benz",
+            "first_name": "Mercedes",
+            "last_name": "Benz",
+            "address1": "Ljepunice bb",
+            "address2": "Ljepunice bb",
+            "city": "Tuzla",
+            "phone_number": "06444442",
+            "email": "mercedes@gmail.com",
+            "jib":"33",
+            "pib":"34",
+            "created": "2023-07-30 18:35:01.942027",
+            "modified": "2023-07-30 18:50:01.942027",
+            "active": "True"
+        }
+    },
+    {
+        "model": "domain.Customer",
+        "pk": "a5b6a162-6070-458d-9925-6773681064ac",
+        "fields": {
+            "full_name": "Mazda Auto",
+            "first_name": "Mazda",
+            "last_name": "Auto",
+            "address1": "Adresa 1b",
+            "address2": "Adresa 2b",
+            "city": "Mostar",
+            "phone_number": "066666666",
+            "email": "mazda@gmail.com",
+            "jib":"63",
+            "pib":"64",
+            "created": "2023-07-30 18:35:01.942027",
+            "modified": "2023-07-30 18:50:01.942027",
+            "active": "True"
+        }
+    },
+    {
+        "model": "domain.Customer",
+        "pk": "83a4d9c2-4569-4c8e-9a37-aefe40d2b587",
+        "fields": {
+            "full_name": "BMW Tomic",
+            "first_name": "BMW",
+            "last_name": "Tomic",
+            "address1": "Nikole Tesle 1b",
+            "address2": "Nikole Tesle 2b",
+            "city": "Doboj",
+            "phone_number": "065999999",
+            "email": "bmwdoboj@gmail.com",
+            "jib":"83",
+            "pib":"84",
+            "created": "2023-07-30 18:35:01.942027",
+            "modified": "2023-07-30 18:50:01.942027",
+            "active": "False"
+        }
+    },
+    {
+        "model": "domain.Customer",
+        "pk": "5b8c4f2e-ec33-4a40-a2df-62fe26c6175b",
+        "fields": {
+            "full_name": "Mercedes Benz",
+            "first_name": "Mercedes",
+            "last_name": "Benz",
+            "address1": "Adresa bb",
+            "address2": "Adresa bb",
+            "city": "Trebinje",
+            "phone_number": "0668888888",
+            "email": "mercedes@gmail.com",
+            "jib":"332",
+            "pib":"342",
+            "created": "2023-07-30 18:35:01.942027",
+            "modified": "2023-07-30 18:50:01.942027",
+            "active": "False"
+        }
+    },
+    {
+        "model": "domain.Customer",
+        "pk": "7b4a58a7-8eeb-4dab-b001-5952af4e2fa1",
+        "fields": {
+            "full_name": "C-Auto",
+            "first_name": "C",
+            "last_name": "Auto",
+            "address1": "Suboticka 2d",
+            "address2": "Suboticka 2b",
+            "city": "Sarajevo",
+            "phone_number": "065555553",
+            "email": "cautosarajevo@gmail.com",
+            "jib":"75",
+            "pib":"88",
+            "created": "2023-07-30 09:35:01.942027",
+            "modified": "2023-07-30 10:50:01.942027",
+            "active": "True"
+        }
+    }
+]
