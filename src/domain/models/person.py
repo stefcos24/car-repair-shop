@@ -13,7 +13,7 @@ class Person(models.Model):
     modified = models.DateTimeField(auto_now=True)
     user = models.OneToOneField(
         User,
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         related_name="person",
         null=True,
         blank=True

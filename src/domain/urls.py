@@ -16,10 +16,12 @@ Including another URLconf
 """
 from django.urls import path
 
-from domain.views import base, person, customer
+from domain.views import base, person, customer, auth
 
 urlpatterns = [
     path('', base.domain_base, name="domain"),
+    path('login/', auth.user_login, name="user_login"),
+    path('logout/', auth.user_logout, name="user_logout"),
     path('person/', person.person_list, name="persons"),
     path('person/create', person.create_person, name="person_create"),
     path('person/<str:person_id>', person.get_or_update_person_details, name="person"),
