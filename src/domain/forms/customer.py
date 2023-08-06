@@ -22,33 +22,73 @@ class CustomerForm(ModelForm):
 
         widgets = {
             "first_name": forms.TextInput(
-                attrs={"class": "form-control", "id": "inputFirstName", "placeholder": "First Name"}
+                attrs={
+                    "class": "form-control",
+                    "id": "inputFirstName",
+                    "placeholder": "First Name"
+                }
             ),
             "last_name": forms.TextInput(
-                attrs={"class": "form-control", "id": "inputLastName", "placeholder": "Last Name"}
+                attrs={
+                    "class": "form-control",
+                    "id": "inputLastName",
+                    "placeholder": "Last Name"
+                }
             ),
             "address1": forms.TextInput(
-                attrs={"class": "form-control", "id": "inputAddress", "placeholder": "Address"}
+                attrs={
+                    "class": "form-control",
+                    "id": "inputAddress",
+                    "placeholder": "Address"
+                }
             ),
             "address2": forms.TextInput(
-                attrs={"class": "form-control", "id": "inputSecondAddress", "placeholder": "SecondAddress"}
+                attrs={
+                    "class": "form-control",
+                    "id": "inputSecondAddress",
+                    "placeholder": "SecondAddress"
+                }
             ),
             "city": forms.TextInput(
-                attrs={"class": "form-control", "id": "inputCity", "placeholder": "City"}
+                attrs={
+                    "class": "form-control",
+                    "id": "inputCity",
+                    "placeholder": "City"
+                }
             ),
             "phone_number": forms.TextInput(
-                attrs={"class": "form-control", "id": "inputPhoneNumber", "placeholder": "Phone Number"}
+                attrs={
+                    "class": "form-control",
+                    "id": "inputPhoneNumber",
+                    "placeholder": "Phone Number"
+                }
             ),
             "email": forms.EmailInput(
-                attrs={"class": "form-control", "id": "inputEmail", "placeholder": "Email"}
+                attrs={
+                    "class": "form-control",
+                    "id": "inputEmail",
+                    "placeholder": "Email"
+                }
             ),
             "jib": forms.TextInput(
-                attrs={"class": "form-control", "id": "inputJib", "placeholder": "JIB"}
+                attrs={
+                    "class": "form-control",
+                    "id": "inputJib",
+                    "placeholder": "JIB"
+                }
             ),
             "pib": forms.TextInput(
-                attrs={"class": "form-control", "id": "inputPib", "placeholder": "PIB"}
+                attrs={
+                    "class": "form-control",
+                    "id": "inputPib",
+                    "placeholder": "PIB"
+                }
             ),
             "active": forms.Select(
-                attrs={"class": "form-control custom-select", "id": "inputActive", "placeholder": "Active"}
+                attrs={
+                    "class": "form-control custom-select",
+                    "id": "inputActive",
+                    "placeholder": "Active"
+                }
             ),
         }

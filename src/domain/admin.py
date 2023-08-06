@@ -14,13 +14,26 @@ class PersonAdmin(admin.ModelAdmin):
 
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ["id", "full_name", "address1", "email", "phone_number", "active"]
+    list_display = [
+        "id",
+        "full_name",
+        "address1",
+        "email",
+        "phone_number",
+        "active"
+    ]
     readonly_fields = ["created", "modified"]
 
 
 @admin.register(Payment)
 class PaymentsAdmin(admin.ModelAdmin):
-    list_display = ["id", "bill_id", "date_of_issue", "value_date", "payment_method"]
+    list_display = [
+        "id",
+        "bill_id",
+        "date_of_issue",
+        "value_date",
+        "payment_method"
+    ]
 
 
 @admin.register(PaymentsDetail)

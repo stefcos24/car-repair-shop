@@ -11,7 +11,7 @@ def unauthenticated_user(view_func):
     return wrapper_func
 
 
-def allowed_users(allowed_roles=[]):
+def allowed_users(allowed_roles: list):
     def decorator(view_func):
         def wrapper_func(request, *args, **kwargs):
 

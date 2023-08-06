@@ -72,6 +72,8 @@ exclude = [
 # ruff rules to ignore
 ignore = [
     "RUF012",     # MagicMethod
+    "RET505",     # Unnecessary statemet
+
 ]
 
 [tool.ruff.per-file-ignores]
