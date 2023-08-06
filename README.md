@@ -1,6 +1,6 @@
 # Car Repair Shop
 
-## Instruction to start project
+### Instruction to start project
 - Install Python 3.10.10 version 
 - Upgrade pip with new version
 - Install pipx
@@ -37,7 +37,7 @@ $ python manage.py migrate
 $ python manage.py runserver
 ```
 
-## Instruction to run Ruff
+### Instruction to run Ruff
 
 - Before committing to git run linter, if there is errors resolve it
 ```bash
