@@ -1,0 +1,64 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 101,
+        "fields": {
+            "password": "pbkdf2_sha256$216000$B3lUEjVSFgmv$tMVwdYqa6s3n4LPJOrDEb4ppUXmS9poq9APk/ROSEBc=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "admin_user",
+            "first_name": "",
+            "last_name": "",
+            "email": "admin@example.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2023-07-30 18:35:01.942027",
+            "groups": [1]
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 102,
+        "fields": {
+            "password": "pbkdf2_sha256$216000$oWSZ7PpUSQ6v$cStDIh1WOemzmDn1fPCfyZAKJmD0QgIVW8vq3d6GAzA=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "staff_user",
+            "first_name": "",
+            "last_name": "",
+            "email": "staff@example.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-07-30 18:35:01.942027",
+            "groups": [2]
+        }
+    },
+    {
+        "model": "domain.Person",
+        "pk": "87e8bb82-7b76-4bcd-89be-2f4b3ff78187",
+        "fields": {
+            "first_name": "Admin",
+            "last_name": "User",
+            "email": "admin@example.com",
+            "phone_number": "1234567890",
+            "active": true,
+            "user": 101,
+            "created": "2023-07-30 18:35:01.942027",
+            "modified": "2023-07-30 18:35:01.942027"
+        }
+    },
+    {
+        "model": "domain.Person",
+        "pk": "94296433-c66e-43af-af21-b495c11dd09b",
+        "fields": {
+            "first_name": "Staff",
+            "last_name": "User",
+            "email": "staff@example.com",
+            "phone_number": "0987654321",
+            "active": true,
+            "user": 102,
+            "created": "2023-07-30 18:35:01.942027",
+            "modified": "2023-07-30 18:35:01.942027"
+        }
+    }
+]
