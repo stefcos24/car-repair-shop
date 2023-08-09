@@ -1,0 +1,150 @@
+{% extends "domain/base.html" %}
+{% load static %}
+{% block preloader %}
+{% endblock %}
+{% block body %}
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Order Number: {{ order.bill_id }}</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{% url 'domain' %}">Home</a></li>
+              <li class="breadcrumb-item active">Order</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <form class="form" method="POST">
+              {% csrf_token %}
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">General</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="inputCustomer">Customer</label>
+                  <input readonly type="text" id="inputCustomer" class="form-control" value="{{ order.customer.full_name }}">
+              </div>
+                <div class="form-group">
+                <label for="inputVehicle">Vehicle</label>
+                    <input readonly type="text" id="inputVehicle" class="form-control" value="{{ order.vehicle }}">
+              </div>
+            <div class="form-group">
+                <label for="inputVehiclePlateNumber">Vehicle Plate Number</label>
+                    <input readonly type="text" id="inputVehiclePlateNumber" class="form-control" value="{{ order.vehicle_plate_number }}">
+              </div>
+              <div class="form-group">
+                <label for="inputPaymentMethod">Payment Method</label>
+                  <input readonly type="text" id="inputPaymentMethod" class="form-control" value="{{ order.payment_method }}">
+              </div>
+                <div class="form-group">
+                <label for="inputAddress">Created by</label>
+                  <input readonly type="text" id="inputPaymentMethod" class="form-control" value="{{ order.person.first_name }} {{ order.person.last_name }}">
+              </div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <div class="col-md-6">
+          <div class="card card-secondary">
+            <div class="card-header">
+              <h3 class="card-title">Items</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-csard-widget="collapse" title="Collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Discount</th>
+                    <th>Total Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for item in order_items %}
+                  <tr>
+                    <td>{{ item.content_item.item }}</td>
+                    <td>{{ item.content_item.price }} KM</td>
+                    <td>{{ item.content_item.discount }} %</td>
+                    <td>{{ item.content_item.total_price }} KM</td>
+                  </tr>
+                    </td>
+                {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+          <div class="card card-info">
+            <div class="card-header">
+              <h3 class="card-title">History</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body p-0">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Date of Issue</th>
+                    <th>Value Date</th>
+                    <th>Delivery Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr>
+                    <td>{{ order.date_of_issue|date:"d.m.Y" }}</td>
+                    <td>{{ order.value_date|date:"d.m.Y" }}</td>
+                    <td>{{ order.delivery_date|date:"d.m.Y" }}</td>
+                  </tr>
+                    </td>
+
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <a href="{% url 'orders' %}" class="btn btn-danger">Back</a>
+        </div>
+      </div>
+            </form>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+{% endblock %}
