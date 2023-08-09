@@ -3,6 +3,7 @@ import uuid
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
+from django.contrib import messages
 from django.http import Http404
 from django.shortcuts import render, redirect
 
@@ -53,6 +54,7 @@ def create_person(request):
             user.groups.add(group)
             person.user = user
             person.save()
+            messages.success(request, 'Person is created successfully!')
             return redirect('persons')
 
     context = {
@@ -75,6 +77,7 @@ def get_or_update_person_details(request, person_id: uuid.UUID):
         if form.is_valid():
             form.instance.modified = datetime.datetime.now()
             form.save()
+            messages.success(request, 'Person is updated successfully!')
             return redirect('persons')
 
     context = {
@@ -97,6 +100,7 @@ def delete_person(request, person_id: uuid.UUID):
         person.delete()
         if user:
             user.delete()
+        messages.success(request, 'Person is deleted successfully!')
         return redirect('persons')
 
     context = {

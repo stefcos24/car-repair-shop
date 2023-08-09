@@ -2,6 +2,7 @@ import datetime
 import uuid
 
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.http import Http404
 from django.shortcuts import render, redirect
 
@@ -58,6 +59,7 @@ def create_customer(request):
                 active=active
             )
             customer.save()
+            messages.success(request, 'Customer is created successfully!')
             return redirect('customers')
 
     context = {
@@ -81,6 +83,7 @@ def get_or_update_customer_details(request, customer_id: uuid.UUID):
         if form.is_valid():
             form.instance.modified = datetime.datetime.now()
             form.save()
+            messages.success(request, 'Customer is updated successfully!')
             return redirect('customers')
 
     context = {
@@ -99,6 +102,7 @@ def delete_customer(request, customer_id: uuid.UUID):
 
     if request.method == "POST":
         customer.delete()
+        messages.success(request, 'Customer is deleted successfully!')
         return redirect('customers')
 
     context = {
