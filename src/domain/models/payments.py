@@ -8,12 +8,13 @@ from domain.models.payments_details import PaymentsDetail
 class Payment(models.Model):
     id = models.UUIDField(primary_key=True)
     person = models.ForeignKey(Person, on_delete=models.PROTECT)
-    bill_id = models.CharField(max_length=50, null=False, db_index=True)
+    bill_id = models.IntegerField(unique=True, null=False, default=1)
     payments_details = models.OneToOneField(
-        PaymentsDetail,
-        on_delete=models.PROTECT
+        PaymentsDetail, on_delete=models.PROTECT
     )
     customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
+    vehicle = models.CharField(max_length=50, null=True)
+    vehicle_plate_number = models.CharField(max_length=50, null=True)
     date_of_issue = models.DateTimeField(auto_now=True)
     value_date = models.DateTimeField(auto_now=True)
     delivery_date = models.DateTimeField(auto_now=True)
@@ -21,7 +22,4 @@ class Payment(models.Model):
     content = models.JSONField()
 
     def __str__(self):
-        return f"Payment: " \
-               f"{Payment.bill_id} " \
-               f"{Customer.first_name} " \
-               f"{Customer.last_name}"
+        return f"Payment: {self.id}"
