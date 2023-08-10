@@ -12,18 +12,15 @@ from domain.models.customer import Customer
 # Create your views here.
 
 
-@login_required(login_url='user_login')
+@login_required(login_url="user_login")
 def customer_list(request):
     customers = Customer.objects.all()
-    context = {
-        "customers": customers
-    }
-    return render(request, 'domain/customers.html', context)
+    context = {"customers": customers}
+    return render(request, "domain/customers.html", context)
 
 
-@login_required(login_url='user_login')
+@login_required(login_url="user_login")
 def create_customer(request):
-
     form = CustomerForm(request.POST)
 
     if request.method == "POST":
@@ -36,8 +33,8 @@ def create_customer(request):
             city = form.cleaned_data["city"]
             phone_number = form.cleaned_data["phone_number"]
             email = form.cleaned_data["email"]
-            jib = form.cleaned_data["email"]
-            pib = form.cleaned_data["email"]
+            jib = form.cleaned_data["jib"]
+            pib = form.cleaned_data["pib"]
             active = form.cleaned_data["active"]
             created = datetime.datetime.now()
             modified = datetime.datetime.now()
@@ -56,22 +53,19 @@ def create_customer(request):
                 pib=pib,
                 created=created,
                 modified=modified,
-                active=active
+                active=active,
             )
             customer.save()
-            messages.success(request, 'Customer is created successfully!')
-            return redirect('customers')
+            messages.success(request, "Customer is created successfully!")
+            return redirect("customers")
 
-    context = {
-        "form": form
-    }
+    context = {"form": form}
 
-    return render(request, 'domain/customer_create.html', context)
+    return render(request, "domain/customer_create.html", context)
 
 
-@login_required(login_url='user_login')
+@login_required(login_url="user_login")
 def get_or_update_customer_details(request, customer_id: uuid.UUID):
-
     customer = Customer.objects.filter(id=customer_id).first()
     if not customer:
         raise Http404()
@@ -83,29 +77,23 @@ def get_or_update_customer_details(request, customer_id: uuid.UUID):
         if form.is_valid():
             form.instance.modified = datetime.datetime.now()
             form.save()
-            messages.success(request, 'Customer is updated successfully!')
-            return redirect('customers')
+            messages.success(request, "Customer is updated successfully!")
+            return redirect("customers")
 
-    context = {
-        "form": form,
-        "customer": customer
-    }
-    return render(request, 'domain/customer.html', context)
+    context = {"form": form, "customer": customer}
+    return render(request, "domain/customer.html", context)
 
 
-@login_required(login_url='user_login')
+@login_required(login_url="user_login")
 def delete_customer(request, customer_id: uuid.UUID):
-
     customer = Customer.objects.filter(id=customer_id).first()
     if not customer:
         raise Http404()
 
     if request.method == "POST":
         customer.delete()
-        messages.success(request, 'Customer is deleted successfully!')
-        return redirect('customers')
+        messages.success(request, "Customer is deleted successfully!")
+        return redirect("customers")
 
-    context = {
-        "customer": customer
-    }
-    return render(request, 'domain/customer_delete.html', context)
+    context = {"customer": customer}
+    return render(request, "domain/customer_delete.html", context)
