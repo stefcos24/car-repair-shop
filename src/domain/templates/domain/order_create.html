@@ -1,0 +1,129 @@
+{% extends "domain/base.html" %}
+{% load static %}
+{% block preloader %}
+{% endblock %}
+{% block body %}
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Create Order</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{% url 'domain' %}">Home</a></li>
+              <li class="breadcrumb-item active">Order</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <form class="form" method="POST">
+              {% csrf_token %}
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">General</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="inputCustomer">Customer</label>
+                  <select id="customer" name="customer" class="form-control custom-select">
+                      <option selected disabled>Select Customer</option>
+                      {% for customer in customers %}
+                          <option value="{{ customer.id }}">{{ customer.full_name }}</option>
+                      {% endfor %}
+                  </select>
+              </div>
+                <div class="form-group">
+                <label for="inputPaymentMethod">Payment Method</label>
+                  <select id="payment_method" name="payment_method" class="form-control custom-select">
+                      <option selected disabled>Select Paymeth Method</option>
+                      <option value="cash">Cash</option>
+                      <option value="card">Card</option>
+                  </select>
+              </div>
+                <div class="form-group">
+                    <label for="inputVehicle">Vehicle</label>
+                    <input type="text" class="form-control" id="inputVehicle" placeholder="Enter Vehicle" name="vehicle">
+                </div>
+            <div class="form-group">
+                    <label for="inputPlateNumber">Plate Number</label>
+                    <input type="text" class="form-control" id="inputPlateNumber" placeholder="Enter Vehicle Plate Number" name="plate_number">
+                </div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+      <div class="col-md-6">
+          <div class="card card-secondary">
+            <div class="card-header">
+              <h3 class="card-title">Items</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+              <div class="card-body">
+                  <div id="rowsContainer">
+                <div class="row">
+                    <div class="form-group col">
+                        <label for="inputItem">Item</label>
+                        <input type="text" id="inputItem" name="item[0]" class="form-control">
+                    </div>
+
+                    <div class="form-group col">
+                        <label for="inputPrice">Price</label>
+                        <input type="number" id="inputPrice" name="price[0]" class="form-control">
+                    </div>
+
+                    <div class="form-group col">
+                        <label for="inputDiscount">Discount</label>
+                        <input type="number" id="inputDiscount" name="discount[0]" class="form-control">
+                    </div>
+                  <div class="form-group col">
+                        <label for="inputTotalPrice">Total Price</label>
+                        <input type="number" id="inputTotalPrice" name="total_price[0]" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="btn-group mt-3">
+                <button id="addRowButton" class="btn btn-success" onclick="event.preventDefault(); addRow();"><i class="fas fa-plus"></i></button>
+                <button id="deleteRowButton" class="btn btn-danger" onclick="event.preventDefault(); removeLastRow();"><i class="fas fa-minus"></i></button>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+      </div>
+      </div>
+        <div class="row">
+        <div class="col-12">
+          <a href="{% url 'orders' %}" class="btn btn-secondary">Cancel</a>
+          <input type="submit" value="Create new Order" class="btn btn-success float-right">
+        </div>
+      </div>
+        </form>
+    </section>
+    <!-- /.content -->
+  </div>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'dist/js/order_custom.js' %}"></script>
+{% endblock %}

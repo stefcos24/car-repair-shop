@@ -16,62 +16,37 @@ Including another URLconf
 """
 from django.urls import path
 
-from domain.views import base, person, customer, auth
+from domain.views import base, person, customer, auth, orders
 
 urlpatterns = [
+    path("", base.domain_base, name="domain"),
+    path("login/", auth.user_login, name="user_login"),
+    path("logout/", auth.user_logout, name="user_logout"),
+    path("person/", person.person_list, name="persons"),
+    path("person/create", person.create_person, name="person_create"),
     path(
-        '',
-        base.domain_base,
-        name="domain"
-    ),
-    path(
-        'login/',
-        auth.user_login,
-        name="user_login"
-    ),
-    path(
-        'logout/',
-        auth.user_logout,
-        name="user_logout"
-    ),
-    path(
-        'person/',
-        person.person_list,
-        name="persons"
-    ),
-    path(
-        'person/create',
-        person.create_person,
-        name="person_create"
-    ),
-    path(
-        'person/<str:person_id>',
+        "person/<str:person_id>",
         person.get_or_update_person_details,
-        name="person"
+        name="person",
     ),
     path(
-        'person/<str:person_id>/delete',
+        "person/<str:person_id>/delete",
         person.delete_person,
-        name="person_delete"
+        name="person_delete",
     ),
+    path("customer/", customer.customer_list, name="customers"),
+    path("customer/create", customer.create_customer, name="customer_create"),
     path(
-        'customer/',
-        customer.customer_list,
-        name="customers"
-    ),
-    path(
-        'customer/create',
-        customer.create_customer,
-        name="customer_create"
-    ),
-    path(
-        'customer/<str:customer_id>',
+        "customer/<str:customer_id>",
         customer.get_or_update_customer_details,
-        name="customer"
+        name="customer",
     ),
     path(
-        'customer/<str:customer_id>/delete',
+        "customer/<str:customer_id>/delete",
         customer.delete_customer,
-        name="customer_delete"
+        name="customer_delete",
     ),
+    path("orders/create", orders.create_order, name="order_create"),
+    path("orders", orders.get_orders, name="orders"),
+    path("order/<str:order_id>", orders.get_order, name="order"),
 ]
