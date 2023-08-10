@@ -9,8 +9,6 @@ from django.shortcuts import render, redirect
 from domain.forms.customer import CustomerForm
 from domain.models.customer import Customer
 
-# Create your views here.
-
 
 @login_required(login_url="user_login")
 def customer_list(request):
@@ -39,6 +37,7 @@ def create_customer(request):
             created = datetime.datetime.now()
             modified = datetime.datetime.now()
 
+            # create customer object
             customer = Customer(
                 id=uuid.uuid4(),
                 full_name=full_name,

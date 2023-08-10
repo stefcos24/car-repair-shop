@@ -35,6 +35,7 @@ def create_person(request):
             created = datetime.datetime.now()
             modified = datetime.datetime.now()
 
+            # create person object
             person = Person(
                 id=uuid.uuid4(),
                 first_name=first_name,
@@ -45,6 +46,7 @@ def create_person(request):
                 created=created,
                 modified=modified
             )
+            # create user object and add to person.user
             user = User.objects.create_user(
                 username=f"{person.first_name}{person.last_name}",
                 email=person.email,
