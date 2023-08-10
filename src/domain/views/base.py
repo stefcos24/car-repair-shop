@@ -4,9 +4,6 @@ from django.shortcuts import render
 from domain.models import Payment, Customer, Person
 
 
-# Create your views here.
-
-
 @login_required(login_url="user_login")
 def domain_base(request):
     orders_count = Payment.objects.all().count()

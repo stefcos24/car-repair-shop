@@ -2,6 +2,7 @@ import datetime
 import json
 import uuid
 
+from django.contrib import messages
 from django.http import Http404
 from django.shortcuts import redirect, render
 
@@ -24,7 +25,6 @@ def get_orders(request):
 def get_order(request, order_id: uuid.UUID):
     order = Payment.objects.filter(id=order_id).first()
     order_items = PaymentsItem.objects.filter(payment_id=order_id).all()
-    print(order_items)
     if not order:
         raise Http404()
     context = {"order": order, "order_items": order_items}
@@ -115,6 +115,7 @@ def create_order(request):
                 modified=datetime.datetime.now(),
             )
         # TODO in future will be redirect to invoice doc
+        messages.success(request, "Customer is created successfully!")
         return redirect("orders")
 
     customers = Customer.objects.all()
