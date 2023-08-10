@@ -26,6 +26,8 @@
   <link rel="stylesheet" href="{% static 'plugins/daterangepicker/daterangepicker.css' %}">
   <!-- summernote -->
   <link rel="stylesheet" href="{% static 'plugins/summernote/summernote-bs4.min.css' %}">
+    <!-- Toastr -->
+  <link rel="stylesheet" href="{% static 'plugins/toastr/toastr.min.css' %}">
     {% block links %}
     {% endblock %}
 </head>
@@ -735,6 +737,11 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+    <!-- Django messages for Toastr -->
+    {% for msg in messages %}
+        <div class="message" data-level="{{ msg.level_tag }}" data-message="{{ msg }}"></div>
+        <div class="message" data-level="success" data-message="Manual test message"></div>
+    {% endfor %}
           {% block body %}
           {% endblock %}
   <footer class="main-footer">
@@ -780,12 +787,16 @@
 <script src="{% static 'plugins/summernote/summernote-bs4.min.js' %}"></script>
 <!-- overlayScrollbars -->
 <script src="{% static 'plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' %}"></script>
+<!-- Toastr -->
+<script src="{% static 'plugins/toastr/toastr.min.js' %}"></script>
 <!-- AdminLTE App -->
 <script src="{% static 'dist/js/adminlte.js' %}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{% static 'dist/js/demo.js' %}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{% static 'dist/js/pages/dashboard.js' %}"></script>
+<!-- Toastr alert custom -->
+<script src="{% static 'dist/js/toastr_alerts_custom.js' %}"></script>
 {% block script %}
 {% endblock %}
 </body>
