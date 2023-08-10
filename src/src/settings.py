@@ -128,5 +128,5 @@ STATIC_URL = config("STATIC_URL")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MESSAGE_TAGS = {
-    messages.SUCCESS: "alert-success",
+    messages.SUCCESS: "success",
 }
