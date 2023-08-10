@@ -6,7 +6,6 @@ from domain.decorators import unauthenticated_user
 
 @unauthenticated_user
 def user_login(request):
-
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
@@ -16,13 +15,13 @@ def user_login(request):
         if user is not None:
             # login user
             login(request, user)
-            return redirect('domain')
+            return redirect("domain")
 
     context = {}
 
-    return render(request, 'domain/login.html', context)
+    return render(request, "domain/login.html", context)
 
 
 def user_logout(request):
     logout(request)
-    return redirect('user_login')
+    return redirect("user_login")
