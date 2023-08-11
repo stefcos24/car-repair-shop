@@ -20,7 +20,7 @@ class CustomerAdmin(admin.ModelAdmin):
         "address1",
         "email",
         "phone_number",
-        "active"
+        "active",
     ]
     readonly_fields = ["created", "modified"]
 
@@ -32,7 +32,7 @@ class PaymentsAdmin(admin.ModelAdmin):
         "bill_id",
         "date_of_issue",
         "value_date",
-        "payment_method"
+        "payment_method",
     ]
 
 
@@ -44,5 +44,5 @@ class PaymentsDetailsAdmin(admin.ModelAdmin):
 
 @admin.register(PaymentsItem)
 class PaymentsItemsAdmin(admin.ModelAdmin):
-    list_display = ["id", "payment"]
+    list_display = ["id", "payment_id"]
     readonly_fields = ["created", "modified"]
