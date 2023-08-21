@@ -106,30 +106,77 @@
             </a>
           </li>
             <li class="nav-header">MANAGEMENT</li>
-          <li class="nav-item">
-            <a href="{% url 'persons' %}" class="nav-link {% if request.resolver_match.url_name in 'persons,person,person_create,person_delete' %}active{% endif %}">
-              <i class="nav-icon far fa-user"></i>
-              <p>
-                Persons
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{% url 'customers' %}" class="nav-link {% if request.resolver_match.url_name in 'customers,customer,customer_create,customer_delete' %}active{% endif %}">
-              <i class="nav-icon far fa-clipboard"></i>
-              <p>
-                Customers
-              </p>
-            </a>
-          </li>
-            <li class="nav-item">
-            <a href="{% url 'orders' %}" class="nav-link {% if request.resolver_match.url_name in 'orders,order,order_create' %}active{% endif %}">
-              <i class="nav-icon fas fa-shopping-cart"></i>
-              <p>
-                Orders
-              </p>
-            </a>
-          </li>
+        <li class="nav-item {% if request.resolver_match.url_name in 'persons,person,person_create,person_delete' %}menu-open{% endif %}">
+  <a href="{% url 'persons' %}" class="nav-link {% if request.resolver_match.url_name in 'persons,person,person_create,person_delete' %}active{% endif %}">
+    <i class="nav-icon fas fa-user"></i>
+    <p>
+      Persons
+      <i class="right fas fa-angle-left"></i>
+    </p>
+  </a>
+  <ul class="nav nav-treeview">
+  {% if request.user.is_staff %}
+    <li class="nav-item">
+      <a href="{% url 'person_create' %}" class="nav-link {% if request.resolver_match.url_name == 'person_create' %}active{% endif %}">
+        <i class="fas fa-plus nav-icon"></i>
+        <p>Create Person</p>
+      </a>
+    </li>
+  {% endif %}
+    <li class="nav-item">
+      <a href="{% url 'persons' %}" class="nav-link {% if request.resolver_match.url_name == 'persons' %}active{% endif %}">
+        <i class="fas fa-list-ul nav-icon"></i>
+        <p>List Persons</p>
+      </a>
+    </li>
+  </ul>
+</li>
+<li class="nav-item {% if request.resolver_match.url_name in 'customers,customer,customer_create,customer_delete' %}menu-open{% endif %}">
+  <a href="{% url 'customers' %}" class="nav-link {% if request.resolver_match.url_name in 'customers,customer,customer_create,customer_delete' %}active{% endif %}">
+    <i class="nav-icon fas fa-clipboard"></i>
+    <p>
+      Customers
+      <i class="right fas fa-angle-left"></i>
+    </p>
+  </a>
+  <ul class="nav nav-treeview">
+    <li class="nav-item">
+      <a href="{% url 'customer_create' %}" class="nav-link {% if request.resolver_match.url_name == 'customer_create' %}active{% endif %}">
+        <i class="fas fa-plus nav-icon"></i>
+        <p>Create Customer</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="{% url 'customers' %}" class="nav-link {% if request.resolver_match.url_name == 'customers' %}active{% endif %}">
+        <i class="fas fa-list-ul nav-icon"></i>
+        <p>List Customers</p>
+      </a>
+    </li>
+  </ul>
+</li>
+        <li class="nav-item {% if request.resolver_match.url_name in 'orders,order,order_create' %}menu-open{% endif %}">
+  <a href="{% url 'orders' %}" class="nav-link {% if request.resolver_match.url_name in 'orders,order,order_create' %}active{% endif %}">
+    <i class="nav-icon fas fa-shopping-cart"></i>
+    <p>
+      Orders
+      <i class="right fas fa-angle-left"></i>
+    </p>
+  </a>
+  <ul class="nav nav-treeview">
+    <li class="nav-item">
+      <a href="{% url 'order_create' %}" class="nav-link {% if request.resolver_match.url_name == 'order_create' %}active{% endif %}">
+        <i class="fas fa-plus nav-icon"></i>
+        <p>Create Order</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="{% url 'orders' %}" class="nav-link {% if request.resolver_match.url_name == 'orders' %}active{% endif %}">
+        <i class="fas fa-list-ul nav-icon"></i>
+        <p>List Orders</p>
+      </a>
+    </li>
+  </ul>
+</li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

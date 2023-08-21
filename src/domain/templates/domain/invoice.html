@@ -178,15 +178,13 @@
     const submitPaymentButton = document.getElementById("submitted_payment");
     if (submitPaymentButton) {
         submitPaymentButton.addEventListener("click", function(event) {
-            event.preventDefault(); // Prevent the default action
+            event.preventDefault();
 
-            // Open the invoice PDF in a new tab
             const invoiceWindow = window.open("{% url 'invoice_pdf' invoice.id %}", "_blank");
 
-            // Add a small delay, then redirect to orders
             setTimeout(function() {
                 window.location.href = "{% url 'orders' %}";
-            }, 1000); // Wait for 1 second
+            }, 1000);
         });
     }
 </script>
