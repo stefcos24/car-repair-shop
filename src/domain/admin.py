@@ -34,6 +34,7 @@ class PaymentsAdmin(admin.ModelAdmin):
         "value_date",
         "payment_method",
     ]
+    readonly_fields = ["date_of_issue", "value_date", "delivery_date"]
 
 
 @admin.register(PaymentsDetail)

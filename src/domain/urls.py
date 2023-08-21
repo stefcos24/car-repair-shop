@@ -46,7 +46,13 @@ urlpatterns = [
         customer.delete_customer,
         name="customer_delete",
     ),
-    path("orders/create", orders.create_order, name="order_create"),
-    path("orders", orders.get_orders, name="orders"),
+    path("order/create", orders.create_order, name="order_create"),
+    path("order", orders.get_orders, name="orders"),
     path("order/<str:order_id>", orders.get_order, name="order"),
+    path("order/<str:order_id>/invoice", orders.get_invoice, name="invoice"),
+    path(
+        "order/<str:order_id>/invoice/pdf",
+        orders.get_invoice_pdf,
+        name="invoice_pdf",
+    ),
 ]

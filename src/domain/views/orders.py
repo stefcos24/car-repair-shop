@@ -1,5 +1,4 @@
 import datetime
-import json
 import uuid
 
 from django.contrib import messages
@@ -104,6 +103,7 @@ def create_order(request):
             delivery_date=datetime.datetime.now(),
             payment_method=payment_method,
             content=content,
+            submitted_payment=False,
         )
 
         for item in content:
@@ -114,11 +114,57 @@ def create_order(request):
                 created=datetime.datetime.now(),
                 modified=datetime.datetime.now(),
             )
-        # TODO in future will be redirect to invoice doc
-        messages.success(request, "Customer is created successfully!")
-        return redirect("orders")
+        messages.success(request, "Order is created successfully!")
+        return redirect("invoice", order_id=payment.id)
 
     customers = Customer.objects.all()
     context = {"customers": customers}
 
     return render(request, "domain/order_create.html", context)
+
+
+def get_invoice(request, order_id: uuid.UUID):
+    invoice = Payment.objects.filter(id=order_id).first()
+
+    invoice_items = PaymentsItem.objects.filter(payment_id=order_id).all()
+    total_amount = float(invoice.payments_details.total_amount)
+
+    # tax percentage
+    tax_percentage = 17.0
+    # calculate the tax amount
+    tax_amount = (total_amount * tax_percentage) / 100
+    # calculate the subtotal
+    subtotal = total_amount + tax_amount
+
+    context = {
+        "invoice": invoice,
+        "invoice_items": invoice_items,
+        "total_amount": "{:.2f}".format(total_amount),
+        "tax_amount": "{:.2f}".format(tax_amount),
+        "subtotal": "{:.2f}".format(subtotal),
+    }
+    return render(request, "domain/invoice.html", context)
+
+
+def get_invoice_pdf(request, order_id: uuid.UUID):
+    invoice = Payment.objects.filter(id=order_id).first()
+    if invoice.submitted_payment is False:
+        invoice.submitted_payment = True
+        invoice.save()
+    invoice_items = PaymentsItem.objects.filter(payment_id=order_id).all()
+    total_amount = float(invoice.payments_details.total_amount)
+
+    # tax percentage
+    tax_percentage = 17.0
+    # calculate the tax amount
+    tax_amount = (total_amount * tax_percentage) / 100
+    # calculate the subtotal
+    subtotal = total_amount + tax_amount
+    context = {
+        "invoice": invoice,
+        "invoice_items": invoice_items,
+        "total_amount": "{:.2f}".format(total_amount),
+        "tax_amount": "{:.2f}".format(tax_amount),
+        "subtotal": "{:.2f}".format(subtotal),
+    }
+    return render(request, "domain/invoice_print.html", context)
