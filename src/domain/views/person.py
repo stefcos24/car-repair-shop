@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect
 
 from domain.decorators import allowed_users
 from domain.models.person import Person
-from domain.forms.person import PersonForm
+from domain.forms.person import PersonForm, PersonUpdateForm
 
 
 @login_required(login_url="user_login")
@@ -67,12 +67,18 @@ def get_or_update_person_details(request, person_id: uuid.UUID):
     if not person:
         raise Http404()
 
-    form = PersonForm(instance=person)
+    user = person.user
+    form = PersonUpdateForm(instance=person)
 
     if request.method == "POST":
-        form = PersonForm(request.POST, instance=person)
+        form = PersonUpdateForm(request.POST, instance=person)
         if form.is_valid():
             form.instance.modified = datetime.datetime.now()
+            user.username = (
+                f"{form.instance.first_name}{form.instance.last_name}"
+            )
+            user.email = form.instance.email
+            user.save()
             form.save()
             messages.success(request, "Person is updated successfully!")
             return redirect("persons")
