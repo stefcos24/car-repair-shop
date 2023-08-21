@@ -20,6 +20,7 @@ class Payment(models.Model):
     delivery_date = models.DateTimeField(auto_now=True)
     payment_method = models.CharField(max_length=50, null=False)
     content = models.JSONField()
+    submitted_payment = models.BooleanField(default=False)
 
     def __str__(self):
         return f"Payment: {self.id}"

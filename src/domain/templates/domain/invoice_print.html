@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Invoice Print</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+</head>
+<body>
+<div class="wrapper">
+  <!-- Main content -->
+  <section class="invoice">
+    <!-- title row -->
+    <div class="row">
+      <div class="col-12">
+        <h2 class="page-header">
+          <i class="fas fa-globe"></i> AdminLTE, Inc.
+          <small class="float-right">Date: {{ invoice.date_of_issue|date:"j/n/Y" }}</small>
+        </h2>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- info row -->
+    <div class="row invoice-info">
+      <div class="col-sm-4 invoice-col">
+        Car Service
+        <address>
+                    <strong>Stefan Pekez s.p.</strong><br>
+                    <strong>JIB:</strong> 4512603250007<br>
+                    XI Kuljanska bb<br>
+                    78000 Banja Luka<br>
+                    Phone: +387 65 822-880<br>
+                    Email: info@s-auto.com
+                  </address>
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-4 invoice-col">
+        Customer
+                  <address>
+                    <strong>{{ invoice.customer.full_name }}</strong><br>
+                    <strong>JIB:</strong> {{ invoice.customer.jib }}<br>
+                    {{ invoice.customer.address1 }}<br>
+                    {{ invoice.customer.city }}<br>
+                    Phone: {{ invoice.customer.phone_number }}<br>
+                    Email: {{ invoice.email }}
+                  </address>
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-4 invoice-col">
+        <b>Invoice #{{ invoice.bill_id }}</b><br>
+                  <br>
+                  <b>Date of Issue:</b> {{ invoice.date_of_issue|date:"d.m.Y" }}<br>
+                  <b>Value Date:</b> {{ invoice.value_date|date:"d.m.Y" }}<br>
+                  <b>Delivery Date:</b> {{ invoice.delivery_date|date:"d.m.Y" }}
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+    <!-- Table row -->
+    <div class="row">
+      <div class="col-12 table-responsive">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>#</th>
+                      <th>Service Description</th>
+                      <th>Vehicle</th>
+                      <th>Licence Plate</th>
+                      <th>Price</th>
+                      <th>Discount</th>
+                      <th>Total Price</th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for item in invoice_items %}
+                    <tr>
+                      <td>{{ forloop.counter }}</td>
+                      <td>{{ item.content_item.item }}</td>
+                      <td>{{ invoice.vehicle }}</td>
+                      <td>{{ invoice.vehicle_plate_number }}</td>
+                      <td>{{ item.content_item.price|floatformat:"2"}} KM</td>
+                      <td>{{ item.content_item.discount|floatformat}}%</td>
+                      <td>{{ item.content_item.total_price|floatformat:"2"}} KM</td>
+                    </tr>
+                    {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+      <!-- accepted payments column -->
+      <div class="col-6">
+        <p class="lead">Payment Methods:</p>
+                  <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
+                    Autoservis "S Auto" Stefan Pekez s.p. nije registrovan kao obveznik PDV<br>
+                      Uplatu izvršiti na poslovni račun kod UniCredit Bank a.d.Banja Luka
+                  </p>
+                    <table class="table">
+                        <tr>
+                        <th style="width:50%"><img src="{% static 'dist/img/credit/unicredit.png' %}" style="width: 30%" alt="Unicredit"></th>
+                        <td><strong style="font-size: 18px">551730-2200426768</strong></td>
+                      </tr>
+                    </table>
+      </div>
+      <!-- /.col -->
+      <div class="col-6">
+        <p class="lead">Amount:</p>
+
+                  <div class="table-responsive">
+                    <table class="table">
+                      <tr>
+                        <th style="width:50%">Subtotal:</th>
+                        <td>{{ subtotal }} KM</td>
+                      </tr>
+                      <tr>
+                        <th>Tax (17%)</th>
+                        <td>{{ tax_amount }} KM</td>
+                      </tr>
+                      <tr>
+                        <th>Total:</th>
+                        <td>{{ total_amount }} KM</td>
+                      </tr>
+                    </table>
+                  </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- ./wrapper -->
+<!-- Page specific script -->
+<script>
+{#  window.addEventListener("load", function() {#}
+{#  window.print();#}
+{#  window.addEventListener("afterprint", function() {#}
+{#    window.location.href = "/order";#}
+{#  });#}
+  window.addEventListener("load", function() {
+  window.print();
+  // After print event
+  window.addEventListener("afterprint", function() {
+    // Close the tab after printing
+    window.close();
+  });
+});
+</script>
+</body>
+</html>
