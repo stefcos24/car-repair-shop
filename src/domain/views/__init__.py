@@ -3,6 +3,7 @@ from domain.views.customer import (
     customer_list,
     get_or_update_customer_details,
     create_customer,
+    delete_customer,
 )
 from domain.views.person import (
     person_list,
