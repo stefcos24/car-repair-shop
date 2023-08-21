@@ -75,6 +75,7 @@ exclude = [
 ignore = [
     "RUF012",     # MagicMethod
     "RET505",     # Unnecessary statemet
+    "B905",     # Strict parameter
 
 ]
 

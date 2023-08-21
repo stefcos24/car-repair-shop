@@ -1,5 +1,4 @@
 import datetime
-import json
 import uuid
 
 from django.contrib import messages
