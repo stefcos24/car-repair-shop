@@ -1,6 +1,7 @@
 import datetime
 import uuid
 
+
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator
@@ -18,9 +19,9 @@ def customer_list(request):
     if query:
         customers_list = Customer.objects.filter(
             Q(full_name__icontains=query) | Q(email__icontains=query)
-        )
+        ).order_by("created")
     else:
-        customers_list = Customer.objects.all()
+        customers_list = Customer.objects.all().order_by("created")
     p = Paginator(customers_list, 10)
     page = request.GET.get("page")
     customers = p.get_page(page)

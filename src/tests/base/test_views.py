@@ -16,10 +16,10 @@ class TestBaseViews(TestCase):
     def test_get_base(self):
         response = self.client.get(reverse("domain"))
 
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "domain/index.html")
 
     def test_get_base_forbidden(self):
         self.client.logout()
         response = self.client.get(reverse("domain"))
-        self.assertEquals(response.status_code, 302)
+        self.assertEqual(response.status_code, 302)

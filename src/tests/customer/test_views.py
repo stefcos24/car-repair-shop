@@ -19,12 +19,12 @@ class TestCustomerViews(TestCase):
     def test_get_customers_forbidden(self):
         self.client.logout()
         response = self.client.get(reverse("customers"))
-        self.assertEquals(response.status_code, 302)
+        self.assertEqual(response.status_code, 302)
 
     def test_get_customers(self):
         response = self.client.get(reverse("customers"))
 
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "domain/customers.html")
 
     def test_create_customer(self):
@@ -42,7 +42,7 @@ class TestCustomerViews(TestCase):
         }
         response = self.client.post(reverse("customer_create"), data)
 
-        self.assertEquals(response.status_code, 302)
+        self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse("customers"))
         self.assertTrue(
             Customer.objects.filter(email="john@example.com").exists()
@@ -56,7 +56,7 @@ class TestCustomerViews(TestCase):
             "email": "john@example.com",
         }
         response = self.client.post(reverse("customer_create"), data)
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertFalse(
             Customer.objects.filter(email="john@example.com").exists()
         )
@@ -64,7 +64,7 @@ class TestCustomerViews(TestCase):
     def test_get_customer(self):
         response = self.client.get(reverse("customers"))
 
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "domain/customers.html")
 
     def test_get_customer_details(self):
@@ -78,7 +78,7 @@ class TestCustomerViews(TestCase):
                 kwargs={"customer_id": customer.id},
             )
         )
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "domain/customer.html")
 
     def test_get_customer_details_not_exist(self):
@@ -89,7 +89,7 @@ class TestCustomerViews(TestCase):
                 kwargs={"customer_id": non_existent_id},
             )
         )
-        self.assertEquals(response.status_code, 404)
+        self.assertEqual(response.status_code, 404)
 
     def test_update_customer_details_valid(self):
         customer = Customer.objects.filter(
@@ -116,10 +116,10 @@ class TestCustomerViews(TestCase):
             data,
         )
 
-        self.assertEquals(response.status_code, 302)
+        self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse("customers"))
         updated_customer = Customer.objects.get(id=customer.id)
-        self.assertEquals(updated_customer.first_name, "Updated")
+        self.assertEqual(updated_customer.first_name, "Updated")
 
     def test_update_customer_details_invalid(self):
         customer = Customer.objects.filter(
@@ -138,7 +138,7 @@ class TestCustomerViews(TestCase):
             ),
             data,
         )
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "domain/customer.html")
 
     def test_get_or_update_customer_details_not_logged_in(self):
@@ -152,7 +152,7 @@ class TestCustomerViews(TestCase):
                 kwargs={"customer_id": customer.id},
             )
         )
-        self.assertEquals(response.status_code, 302)
+        self.assertEqual(response.status_code, 302)
         self.assertRedirects(
             response,
             "/login/?next=/customer/8df03853-c308-4d09-810c-5828774d9800",
@@ -167,7 +167,7 @@ class TestCustomerViews(TestCase):
             reverse("customer_delete", kwargs={"customer_id": customer.id})
         )
 
-        self.assertEquals(response.status_code, 302)
+        self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse("customers"))
 
         self.assertFalse(Customer.objects.filter(id=customer.id).exists())
@@ -177,7 +177,7 @@ class TestCustomerViews(TestCase):
         response = self.client.post(
             reverse("customer_delete", kwargs={"customer_id": non_existent_id})
         )
-        self.assertEquals(response.status_code, 404)
+        self.assertEqual(response.status_code, 404)
 
     def test_delete_customer_get_request(self):
         customer = Customer.objects.filter(
@@ -187,7 +187,7 @@ class TestCustomerViews(TestCase):
             reverse("customer_delete", kwargs={"customer_id": customer.id})
         )
 
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "domain/customer_delete.html")
 
     def test_delete_customer_not_logged_in(self):
@@ -198,7 +198,7 @@ class TestCustomerViews(TestCase):
         response = self.client.post(
             reverse("customer_delete", kwargs={"customer_id": customer.id})
         )
-        self.assertEquals(response.status_code, 302)
+        self.assertEqual(response.status_code, 302)
         self.assertRedirects(
             response,
             "/login/?next=/customer/dd1d65ec-c7ca-4153-be3d-0448172447bf/delete",

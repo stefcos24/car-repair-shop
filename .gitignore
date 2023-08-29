@@ -51,6 +51,8 @@ venv/
 .mypy_report
 .hypothesis
 .static
+.coverage
+.htmlcov
 
 ### IntelliJ IDEA ###
 .idea

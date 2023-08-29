@@ -24,10 +24,10 @@ class TestPersonForm(TestCase):
         }
         form = PersonForm(data=data)
         self.assertFalse(form.is_valid())
-        self.assertEquals(len(form.errors), 1)
+        self.assertEqual(len(form.errors), 1)
 
     def test_customer_form_no_data(self):
         data = {}
         form = PersonForm(data=data)
         self.assertFalse(form.is_valid())
-        self.assertEquals(len(form.errors), 4)
+        self.assertEqual(len(form.errors), 4)

@@ -9,18 +9,18 @@ class TestCustomerUrls(SimpleTestCase):
 
     def test_list_customers_url_is_resolved(self):
         customers_url = reverse("customers")
-        self.assertEquals(resolve(customers_url).func, customer_list)
+        self.assertEqual(resolve(customers_url).func, customer_list)
 
     def test_create_customer_url_is_resolved(self):
         create_customer_url = reverse("customer_create")
-        self.assertEquals(resolve(create_customer_url).func, create_customer)
+        self.assertEqual(resolve(create_customer_url).func, create_customer)
 
     def test_get_or_update_customer_url_is_resolved(self):
         get_or_update_customer_url = reverse(
             "customer",
             kwargs={"customer_id": "f77e2b40-acc4-4d74-aa20-18acefeb18fa"}
         )
-        self.assertEquals(
+        self.assertEqual(
             resolve(get_or_update_customer_url).func,
             get_or_update_customer_details
         )
@@ -30,4 +30,4 @@ class TestCustomerUrls(SimpleTestCase):
             "customer_delete",
             kwargs={"customer_id": "f77e2b40-acc4-4d74-aa20-18acefeb18fa"}
         )
-        self.assertEquals(resolve(delete_customer_url).func, delete_customer)
+        self.assertEqual(resolve(delete_customer_url).func, delete_customer)

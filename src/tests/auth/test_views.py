@@ -17,5 +17,5 @@ class TestAuthViews(TestCase):
         self.client.logout()
         response = self.client.get(reverse("user_login"))
 
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "domain/login.html")
