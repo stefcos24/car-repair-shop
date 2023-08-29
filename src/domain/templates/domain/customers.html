@@ -31,18 +31,16 @@
           <h3 class="card-title">Customers</h3>
 
           <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-              <i class="fas fa-minus"></i>
-            </button>
+              <form method="get" action="" class="form-inline d-flex align-items-center">
+        <label for="searchBox" class="mr-2" style="font-weight: normal">Search:</label>
+        <input id="searchBox" type="text" name="q" value="{{ query }}" class="form-control form-control-sm">
+    </form>
           </div>
         </div>
         <div class="card-body p-0">
           <table class="table table-striped projects">
               <thead>
                   <tr>
-                      <th style="width: 4%">
-                          #
-                      </th>
                       <th>
                           Name
                       </th>
@@ -68,9 +66,6 @@
               <tbody>
               {% for customer in customers %}
                   <tr>
-                      <td>
-                          {{ forloop.counter }}
-                      </td>
                       <td>
                           <a>
                               {{ customer.full_name}}
@@ -121,6 +116,32 @@
           </table>
         </div>
         <!-- /.card-body -->
+      <div class="card-footer">
+    <nav aria-label="Contacts Page Navigation">
+        <ul class="pagination justify-content-end m-0">
+            {% if customers.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ customers.previous_page_number }}">Previous</a></li>
+            {% else %}
+                <li class="page-item disabled"><span class="page-link">Previous</span></li>
+            {% endif %}
+
+            {% for i in customers.paginator.page_range %}
+                {% if customers.number == i %}
+                    <li class="page-item active"><span class="page-link">{{ i }}</span></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if customers.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ customers.next_page_number }}">Next</a></li>
+            {% else %}
+                <li class="page-item disabled"><span class="page-link">Next</span></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+      <!-- /.card-footer -->
       </div>
       <!-- /.card -->
 
