@@ -3,6 +3,8 @@ import uuid
 
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.paginator import Paginator
+from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import render, redirect
 
@@ -12,7 +14,17 @@ from domain.models.customer import Customer
 
 @login_required(login_url="user_login")
 def customer_list(request):
-    customers = Customer.objects.all()
+    query = request.GET.get("q")
+    if query:
+        customers_list = Customer.objects.filter(
+            Q(full_name__icontains=query) | Q(email__icontains=query)
+        )
+    else:
+        customers_list = Customer.objects.all()
+    p = Paginator(customers_list, 10)
+    page = request.GET.get("page")
+    customers = p.get_page(page)
+
     context = {"customers": customers}
     return render(request, "domain/customers.html", context)
 
