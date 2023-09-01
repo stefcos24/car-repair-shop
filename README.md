@@ -37,6 +37,12 @@ $ python manage.py migrate
 $ python manage.py runserver
 ```
 
+### Running local tests and validations
+- Before committing run nox validation
+```bash
+$ nox -s lint tests coverage
+```
+
 ### Instruction to run Ruff
 
 - Before committing to git run linter, if there is errors resolve it
