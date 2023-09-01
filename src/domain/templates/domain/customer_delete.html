@@ -1,0 +1,103 @@
+{% extends "domain/base.html" %}
+{% load static %}
+{% block preloader %}
+{% endblock %}
+{% block body %}
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{{ customer.full_name }}</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{% url 'domain' %}">Home</a></li>
+              <li class="breadcrumb-item active">Customer</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <form class="form" method="POST">
+              {% csrf_token %}
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">General</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="inputName">First Name</label>
+                  <input type="text" id="inputName" class="form-control" value="{{ customer.first_name }}" readonly>
+              </div>
+                <div class="form-group">
+                <label for="inputName">Last Name</label>
+                  <input type="text" id="inputName" class="form-control" value="{{ customer.last_name }}" readonly>
+              </div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <div class="col-md-6">
+          <!-- /.card -->
+          <div class="card card-info">
+            <div class="card-header">
+              <h3 class="card-title">History</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body p-0">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Created</th>
+                    <th>Modified</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr>
+                    <td>{{ customer.created }}</td>
+                    <td>{{ customer.modified }}</td>
+                  </tr>
+                    </td>
+
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <a href="{% url 'customers' %}" class="btn btn-secondary">Cancel</a>
+          <input type="submit" value="Delete" class="btn btn-danger float-right">
+        </div>
+      </div>
+            </form>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+{% endblock %}

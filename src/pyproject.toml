@@ -1,0 +1,105 @@
+[tool.poetry]
+name = "car-repair-shop"
+version = "0.1.0"
+description = ""
+authors = ["stefancosicpdc <stefan.cosic@pythondevcenter.com>"]
+packages = [
+    { include = "domain" },
+    { include = "src" },
+    { include = "manage.py" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+asgiref = "3.7.1"
+django = "4.2.1"
+sqlparse = "0.4.4"
+typing-extensions = "4.6.1"
+python-decouple = "^3.8"
+black = "^23.7.0"
+nox = "^2023.4.22"
+pytest = "^7.4.0"
+pytest-django = "^4.5.2"
+coverage = "^7.3.0"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.0.280"
+black = {extras = ["d"], version = "^23.7.0"}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 80
+
+# which rulesets to use (some of them have been disabled for this project)
+select = [
+    "F",    # pyflakes
+    "E",    # pycodestyle
+    "W",    # pycodestyle
+    "C90",  # mccabe
+    #"D",   # pydocstyle - disabled since we mostly don't have any py docs
+    #"UP",  # pyupgrade - maybe we will comment this out once we move to a new version of Python
+    "N",    # pep8-naming
+    "YTT",  # flake8-2020
+    #"ANN", # flake8-annotations - disabled since we have a lot of code without type annotations
+    "S",    # flake8-bandit
+    "B",    # flake8-bugbear
+    #"A",   # flake8-builtins - disabled since there are 164 issues to fix
+    "C4",   # flake8-comprehensions
+    "T10",  # flake8-debugger
+    "ICN",  # flake8-import-conventions
+    "T20",  # flake8-print
+    # "Q",  # flake8-quotes - disabled this because there are too many single quotes and black will slowly kill them out anyway
+    "RET",  # flake8-return
+    #"SIM", # flake8-simplify - disabled because if gives false positives that then turn to bugs if "fixed"
+    #"TID", # flake8-tidy-imports - disabled because relative imports are used extensively in MyGP code
+    #"ARG", # flake8-unused-arguments - disabled because there are over 500 issues to fix
+    "ERA",  # eradicate
+    "PGH",  # pygrep-hooks
+    "PLC",  # pylint
+    "PLE",  # pylint
+    "PLR",  # pylint
+    "PLW",  # pylint
+    "RUF",  # ruff
+]
+
+# file patterns to completely exclude from ruff analysis
+exclude = [
+    "domain/migrations",
+    "domain/tests.py",
+    ".git",
+    "__pycache__",
+    "venv",
+    "noxfile.py"
+]
+
+# ruff rules to ignore
+ignore = [
+    "RUF012",     # MagicMethod
+    "RET505",     # Unnecessary statemet
+    "B905",     # Strict parameter
+
+]
+
+[tool.ruff.per-file-ignores]
+# per-file (or group of files) ignores.
+
+"src/settings.py" = [
+    "E501", # LineToLong
+    "S105", # HardcodedPassword
+]
+
+"domain/views/__init__.py" = [
+    "F401", # ImportedUnused
+]
+
+"domain/models/__init__.py" = [
+    "F401", # ImportedUnused
+]
+
+"domain/forms/__init__.py" = [
+    "F401", # ImportedUnused
+]

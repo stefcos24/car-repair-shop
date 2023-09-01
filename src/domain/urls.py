@@ -14,11 +14,45 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path
 
-from domain import views
+from domain.views import base, person, customer, auth, orders
 
 urlpatterns = [
-    path('', views.hello_world, name="domain" ),
+    path("", base.domain_base, name="domain"),
+    path("login/", auth.user_login, name="user_login"),
+    path("logout/", auth.user_logout, name="user_logout"),
+    path("person/", person.person_list, name="persons"),
+    path("person/create", person.create_person, name="person_create"),
+    path(
+        "person/<str:person_id>",
+        person.get_or_update_person_details,
+        name="person",
+    ),
+    path(
+        "person/<str:person_id>/delete",
+        person.delete_person,
+        name="person_delete",
+    ),
+    path("customer/", customer.customer_list, name="customers"),
+    path("customer/create", customer.create_customer, name="customer_create"),
+    path(
+        "customer/<str:customer_id>",
+        customer.get_or_update_customer_details,
+        name="customer",
+    ),
+    path(
+        "customer/<str:customer_id>/delete",
+        customer.delete_customer,
+        name="customer_delete",
+    ),
+    path("order/create", orders.create_order, name="order_create"),
+    path("order", orders.get_orders, name="orders"),
+    path("order/<str:order_id>", orders.get_order, name="order"),
+    path("order/<str:order_id>/invoice", orders.get_invoice, name="invoice"),
+    path(
+        "order/<str:order_id>/invoice/pdf",
+        orders.get_invoice_pdf,
+        name="invoice_pdf",
+    ),
 ]

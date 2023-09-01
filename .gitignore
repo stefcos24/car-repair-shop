@@ -12,7 +12,7 @@
 
 # Maven
 target/
-dist/
+pages/
 
 # JetBrains IDE
 .idea/
@@ -40,20 +40,22 @@ Thumbs.db
 *.wmv
 *.sqlite3
 
+# Environments
 .env
-.nox
+env/
+.venv
+venv/
 .pytest_cache
 .pytest_report
 .mypy_cache
 .mypy_report
-.coverage
-.coverage_report
 .hypothesis
 .static
+.coverage
+.htmlcov
 
 ### IntelliJ IDEA ###
 .idea
 *.iws
 *.iml
 *.ipr
-venv/

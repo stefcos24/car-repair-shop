@@ -19,5 +19,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('domain.urls'))
+    path('', include('domain.urls')),
 ]
+
+handler403 = 'domain.views.error.error_403_view'
+handler404 = 'domain.views.error.error_404_view'
+handler500 = 'domain.views.error.error_500_view'
