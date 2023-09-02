@@ -117,7 +117,7 @@ def create_order(request):
         messages.success(request, "Order is created successfully!")
         return redirect("invoice", order_id=payment.id)
 
-    customers = Customer.objects.all()
+    customers = Customer.objects.filter(active=True)
     context = {"customers": customers}
 
     return render(request, "domain/order_create.html", context)
