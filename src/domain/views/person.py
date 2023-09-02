@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.http import Http404
 from django.shortcuts import render, redirect
 
-from domain.decorators import allowed_users
+from domain.decorators import allowed_users, staff_or_admin_only
 from domain.models.person import Person
 from domain.forms.person import PersonForm, PersonUpdateForm
 
@@ -62,6 +62,7 @@ def create_person(request):
 
 
 @login_required(login_url="user_login")
+@staff_or_admin_only
 def get_or_update_person_details(request, person_id: uuid.UUID):
     person = Person.objects.filter(id=person_id).first()
     if not person:
@@ -69,6 +70,8 @@ def get_or_update_person_details(request, person_id: uuid.UUID):
 
     user = person.user
     form = PersonUpdateForm(instance=person)
+    is_staff = request.user.groups.filter(name="staff").exists()
+    is_admin = request.user.groups.filter(name="admin").exists()
 
     if request.method == "POST":
         form = PersonUpdateForm(request.POST, instance=person)
@@ -83,7 +86,13 @@ def get_or_update_person_details(request, person_id: uuid.UUID):
             messages.success(request, "Person is updated successfully!")
             return redirect("persons")
 
-    context = {"form": form, "person": person}
+    context = {
+        "form": form,
+        "person": person,
+        "is_staff": is_staff,
+        "is_admin": is_admin,
+        "can_edit": is_admin or (is_staff and request.user == person.user),
+    }
     return render(request, "domain/person.html", context)
 
 
