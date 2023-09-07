@@ -83,36 +83,65 @@
                       <div class="form-group row">
                         <label for="inputName" class="col-sm-2 col-form-label">First Name</label>
                         <div class="col-sm-10">
+                        {% if can_edit %}
                             {{ form.first_name }}
+                        {% else %}
+                            <input type="text" readonly="readonly" value="{{ form.first_name.value }}" class="form-control">
+                        {% endif %}
                         </div>
                       </div>
                         <div class="form-group row">
                         <label for="inputName" class="col-sm-2 col-form-label">Last Name</label>
                         <div class="col-sm-10">
-                            {{ form.last_name }}
+                            {% if can_edit %}
+                                {{ form.last_name }}
+                            {% else %}
+                                <input type="text" readonly="readonly" value="{{ form.last_name.value }}" class="form-control">
+                            {% endif %}
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputEmail" class="col-sm-2 col-form-label">E-mail</label>
                         <div class="col-sm-10">
-                            {{ form.email }}
+                            {% if can_edit %}
+                                {{ form.email }}
+                            {% else %}
+                                <input type="text" readonly="readonly" value="{{ form.email.value }}" class="form-control">
+                            {% endif %}
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Phone Number</label>
                         <div class="col-sm-10">
-                            {{ form.phone_number }}
+                            {% if can_edit %}
+                                {{ form.phone_number }}
+                            {% else %}
+                                <input type="text" readonly="readonly" value="{{ form.phone_number.value }}" class="form-control">
+                            {% endif %}
                         </div>
                       </div>
-                      <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <div class="checkbox">
-                            <label>
-                                {{ form.active }} is active
-                            </label>
-                          </div>
-                        </div>
-                      </div>
+                      {% if can_edit %}
+  <div class="form-group row">
+    <div class="offset-sm-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          {{ form.active }} is active
+        </label>
+      </div>
+    </div>
+  </div>
+{% else %}
+  <div class="form-group row">
+    <div class="offset-sm-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" disabled {% if person.active %}checked{% endif %}> is active
+        </label>
+      </div>
+    </div>
+  </div>
+{% endif %}
+                        {% if can_edit %}
                       <div class="form-group row">
                         <div class="offset-sm-2 col-sm-10">
                           <button type="submit" class="btn btn-success">
@@ -120,6 +149,7 @@
                           </button>
                         </div>
                       </div>
+                        {% endif %}
                     </form>
                   </div>
                   <!-- /.tab-pane -->
