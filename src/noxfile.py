@@ -11,7 +11,6 @@ def tests(session):
         "-m",
         "pytest",
         "--junitxml=.pytest_report/report.xml",
-        "--self-contained-html",
         "--ds=src.settings",
         "--log-cli-level=DEBUG",
         "--log-file=pytest.log",
