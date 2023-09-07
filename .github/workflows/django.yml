@@ -18,8 +18,8 @@ jobs:
       TESTUSER_PASSWORD: ${{ secrets.TESTUSER_PASSWORD }}
       ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
       DEBUG: ${{ secrets.DEBUG }}
-      LANGUAGE_CODE: ${{ secrets.LANGUAGE_CODE }}
-      TIME_ZONE: ${{ secrets.TIME_ZONE }}
+      LANGUAGE_CODE: "en-us"
+      TIME_ZONE: "UTC"
       USE_TZ: ${{ secrets.USE_TZ }}
       STATIC_URL: ${{ secrets.STATIC_URL }}
 
