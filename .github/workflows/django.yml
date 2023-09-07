@@ -42,4 +42,4 @@ jobs:
       - name: Validate Code
         run: |
           cd src
-          poetry run nox
+          pytest
