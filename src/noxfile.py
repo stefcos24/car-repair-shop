@@ -24,7 +24,6 @@ def tests(session):
 def coverage(session):
     session.run("mkdir", "-p", ".coverage_report", external=True)
     session.run("rm", "-rf", ".coverage_report/*", external=True)
-    session.run("coverage", "html", external=True)
 
 
 @nox.session
