@@ -33,7 +33,7 @@ jobs:
           poetry install
           pip install --upgrade pip
           pip install -r requirements.txt
-      - name: Run Tests
+      - name: Validate Code
         run: |
           cd src
-          nox
+          poetry run nox
