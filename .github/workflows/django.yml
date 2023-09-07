@@ -29,9 +29,11 @@ jobs:
           poetry-version: 1.4.2
       - name: Install Dependencies
         run: |
+          cd src
           poetry install
           pip install --upgrade pip
           pip install -r requirements.txt
       - name: Run Tests
         run: |
+          cd src
           nox
