@@ -16,12 +16,12 @@ jobs:
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
       SUPERUSER_PASSWORD: ${{ secrets.SUPERUSER_PASSWORD }}
       TESTUSER_PASSWORD: ${{ secrets.TESTUSER_PASSWORD }}
-      ALLOWED_HOSTS: ${{ vars.ALLOWED_HOSTS }}
-      DEBUG: ${{ vars.DEBUG }}
-      LANGUAGE_CODE: ${{ vars.LANGUAGE_CODE }}
-      TIME_ZONE: ${{ vars.TIME_ZONE }}
-      USE_TZ: ${{ vars.USE_TZ }}
-      STATIC_URL: ${{ vars.STATIC_URL }}
+      ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
+      DEBUG: ${{ secrets.DEBUG }}
+      LANGUAGE_CODE: ${{ secrets.LANGUAGE_CODE }}
+      TIME_ZONE: ${{ secrets.TIME_ZONE }}
+      USE_TZ: ${{ secrets.USE_TZ }}
+      STATIC_URL: ${{ secrets.STATIC_URL }}
 
     steps:
       - uses: actions/checkout@v3
